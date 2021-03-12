@@ -10,10 +10,11 @@
     "url": "https://github.com/menmos/menmos-web/issues"
   },
   "scripts": {
+    "dev": "node ./dev/server.js",
     "prebuild": "eslint --fix --ignore-pattern \"**/__tests__/**/*.ts\" \"./src/**/*.ts\"",
-    "build": "tsc -p tsconfig.build.json",
-    "build:dev": "tsc --watch -p tsconfig.json",
-    "typecheck": "tsc --noEmit -p tsconfig.build.json",
+    "build": "tsc",
+    "build:dev": "tsc -p tsconfig.dev.json",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --check .",
@@ -26,6 +27,7 @@
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-jest": "^24.2.0",
+    "express": "^4.17.1",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.3",

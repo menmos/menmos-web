@@ -1,66 +1,37 @@
-import React from "react";
 import Head from "next/head";
-import styles from "../styles/home.module.scss";
+import Layout from "../components/layout";
+import React from "react";
 
-export default function Home(): JSX.Element {
+import styles from "../styles/login.module.scss";
+
+export default function Login(): JSX.Element {
   return (
-    <div className={styles["container"]}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Login Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles["main"]}>
-        <h1 className={styles["title"]}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles["description"]}>
-          Get started by editing{" "}
-          <code className={styles["code"]}>pages/index.js</code>
-        </p>
-
-        <div className={styles["grid"]}>
-          <a href="https://nextjs.org/docs" className={styles["card"]}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles["card"]}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles["card"]}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles["card"]}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <Layout>
+        <div className={styles["container"]}>
+          <div className={styles["form-container"]}>
+            <form>
+              <span className={styles["title"]}>Login</span>
+              <div className={styles["floating-label"]}>
+                <input id="username" name="username" placeholder="Username" />
+              </div>
+              <div className={styles["floating-label"]}>
+                <input
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                />
+              </div>
+              <button type="submit">Log in</button>
+            </form>
+          </div>
         </div>
-      </main>
-
-      <footer className={styles["footer"]}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles["logo"]} />
-        </a>
-      </footer>
-    </div>
+      </Layout>
+    </>
   );
 }

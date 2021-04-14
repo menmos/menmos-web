@@ -1,66 +1,83 @@
-import React from "react";
 import Head from "next/head";
-import styles from "../styles/home.module.scss";
+import Layout from "../components/layout";
+import React from "react";
 
-export default function Home(): JSX.Element {
+import styles from "../styles/login.module.scss";
+
+export default function Login(): JSX.Element {
   return (
-    <div className={styles["container"]}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Login Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles["main"]}>
-        <h1 className={styles["title"]}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles["description"]}>
-          Get started by editing{" "}
-          <code className={styles["code"]}>pages/index.js</code>
-        </p>
-
-        <div className={styles["grid"]}>
-          <a href="https://nextjs.org/docs" className={styles["card"]}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles["card"]}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles["card"]}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles["card"]}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <Layout>
+        <div className={styles["container"]}>
+          <div className={styles["login-form"]}>
+            <form action="" autoComplete="off">
+              <h4>Login</h4>
+              <div className={styles["floating-label"]}>
+                <input
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  autoComplete="off"
+                />
+                <label htmlFor="email">Email:</label>
+                <div className={styles["icon"]}>
+                  <svg
+                    enableBackground="new 0 0 100 100"
+                    version="1.1"
+                    viewBox="0 0 100 100"
+                    xmlSpace="preserve"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g transform="translate(0 -952.36)">
+                      <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z" />
+                    </g>
+                    <rect style={{ fill: "none" }} width="100" height="100" />
+                  </svg>
+                </div>
+              </div>
+              <div className={styles["floating-label"]}>
+                <input
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  id="password"
+                  autoComplete="off"
+                />
+                <label htmlFor="password">Password:</label>
+                <div className={styles["icon"]}>
+                  <svg
+                    enableBackground="new 0 0 24 24"
+                    version="1.1"
+                    viewBox="0 0 24 24"
+                    xmlSpace="preserve"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect style={{ fill: "none" }} width="24" height="24" />
+                    <path
+                      style={{ fill: "#010101" }}
+                      d="M19,21H5V9h14V21z M6,20h12V10H6V20z"
+                    />
+                    <path
+                      style={{ fill: "#010101" }}
+                      d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"
+                    />
+                    <path
+                      style={{ fill: "#010101" }}
+                      d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <button type="submit">Log in</button>
+            </form>
+          </div>
         </div>
-      </main>
-
-      <footer className={styles["footer"]}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles["logo"]} />
-        </a>
-      </footer>
-    </div>
+      </Layout>
+    </>
   );
 }

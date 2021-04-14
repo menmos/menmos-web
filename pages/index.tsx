@@ -13,28 +13,19 @@ export default function Login(): JSX.Element {
       </Head>
       <Layout>
         <div className={styles["container"]}>
-          <div className={styles["login-form"]}>
-            <form action="" autoComplete="off">
-              <h4>Login</h4>
+          <div className={styles["form-container"]}>
+            <form>
+              <span className={styles["title"]}>Login</span>
               <div className={styles["floating-label"]}>
-                <input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="off"
-                />
-                <label htmlFor="email">Email:</label>
+                <input id="username" name="username" placeholder="Username" />
               </div>
               <div className={styles["floating-label"]}>
                 <input
+                  id="password"
+                  name="password"
                   placeholder="Password"
                   type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="off"
                 />
-                <label htmlFor="password">Password:</label>
               </div>
               <button type="submit">Log in</button>
             </form>

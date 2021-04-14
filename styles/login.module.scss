@@ -7,11 +7,12 @@
   display: flex;
   background: #f3f2f2;
 
-  .login-form {
+  .form-container {
     margin: auto auto;
   }
 
   form {
+    margin: auto auto;
     padding: 40px 30px;
     background: #fefefe;
     display: flex;
@@ -19,18 +20,12 @@
     padding-bottom: 20px;
     width: 300px;
 
-    h4 {
+    & > .title {
+      display: block;
       font-size: 24px;
       margin-bottom: 20px;
       color: rgba(#000, 0.5);
     }
-  }
-
-  label {
-    font-size: 12.5px;
-    color: #000;
-    opacity: 0.8;
-    font-weight: 400;
   }
 
   button {
@@ -60,12 +55,6 @@
     margin-bottom: 10px;
     width: 100%;
 
-    label {
-      position: absolute;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
     input {
       width: 100%;
       display: flex;
@@ -78,6 +67,7 @@
       box-sizing: border-box;
       transition: all 0.3s linear;
       color: #000;
+
       &:focus {
         border-bottom: solid 1px $primary;
         outline: 0;

@@ -1,21 +1,22 @@
+import React, { FC, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import React, { FC, useState } from "react";
+import { login } from "../src/api/auth";
 
 import styles from "../styles/login.module.scss";
-import { login, LOCAL_STORAGE_TOKEN_KEY } from "../src/api/auth";
 
 export const Login: FC = (): JSX.Element => {
-  const [state, setState] = useState({
+  const [fields, setFields] = useState<{ username: string; password: string }>({
     username: "",
     password: "",
-    error: "",
   });
+
+  const [error, setError] = useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
-    setState((previousState) => ({
+    setFields((previousState) => ({
       ...previousState,
       [id]: value,
     }));
@@ -24,20 +25,18 @@ export const Login: FC = (): JSX.Element => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const token = await login(state.username, state.password);
+    try {
+      const token = await login(fields.username, fields.password);
 
-    if (token) {
-      localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
-
-      setState((previousState) => ({
-        ...previousState,
-        error: "",
-      }));
-    } else {
-      setState((previousState) => ({
-        ...previousState,
-        error: "Invalid username or password",
-      }));
+      try {
+        localStorage.setItem("menmos-web-token", token);
+        setError("");
+      } catch (err) {
+        setError("Authentication token storage failed");
+      }
+    } catch (err) {
+      // TODO: Check HTTP status before assuming it's a username-password problem
+      setError("Authentication failed");
     }
   };
 
@@ -57,7 +56,7 @@ export const Login: FC = (): JSX.Element => {
                   id="username"
                   name="username"
                   placeholder="Username"
-                  value={state.username}
+                  value={fields.username}
                   onChange={handleChange}
                 />
               </div>
@@ -67,11 +66,11 @@ export const Login: FC = (): JSX.Element => {
                   name="password"
                   placeholder="Password"
                   type="password"
-                  value={state.password}
+                  value={fields.password}
                   onChange={handleChange}
                 />
               </div>
-              {state.error && <p className={styles["error"]}>{state.error}</p>}
+              {error && <p className={styles["error"]}>{error}</p>}
               <button type="submit">Log in</button>
             </form>
           </div>

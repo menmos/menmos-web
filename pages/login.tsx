@@ -20,7 +20,7 @@ export const Login: FC = (): JSX.Element => {
 
   useEffect(() => {
     if (isAuthenticated()) {
-      router.push("/");
+      void router.push("/");
     }
   });
 
@@ -47,7 +47,7 @@ export const Login: FC = (): JSX.Element => {
         );
         setError("");
 
-        router.push("/");
+        await router.push("/");
       } catch {
         setError("Authentication token storage failed");
       }

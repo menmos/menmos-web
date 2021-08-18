@@ -10,9 +10,9 @@ export const Home: FC = (): JSX.Element => {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.push("/login");
+      void router.push("/login");
     }
-  }, []);
+  });
 
   return (
     <>

@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 
-const Header: FC = () => (
+export interface Properties {
+  hide?: boolean;
+}
+
+const Header: FC<Properties> = (properties) => (
   <header>
     <nav className="header">
-      <div></div>
+      {!properties.hide && <div>{properties.children}</div>}
     </nav>
   </header>
 );

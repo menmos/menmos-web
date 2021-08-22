@@ -10,8 +10,14 @@ import {
 } from "./utils/get-components";
 
 const defaultComponents = {
-  Header,
-  Footer,
+  Header: {
+    component: Header,
+    props: {},
+  },
+  Footer: {
+    component: Footer,
+    props: {},
+  },
 };
 type ComponentNames = keyof typeof defaultComponents;
 
@@ -24,6 +30,7 @@ const Layout: FC<Properties> = (properties) => {
     Header: { props: headerProperties },
     Footer: { props: footerProperties },
   } = getComponents(defaultComponents, properties.overrides);
+  console.log(headerProperties);
 
   return (
     <div className="layout">
@@ -35,3 +42,5 @@ const Layout: FC<Properties> = (properties) => {
 };
 
 export default Layout;
+
+export type { Properties as HeaderProperties } from "./header";

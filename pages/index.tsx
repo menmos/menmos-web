@@ -26,7 +26,19 @@ export const Home: FC = (): JSX.Element => {
             <title>Menmos</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Layout>
+          <Layout
+            overrides={{
+              Header: {
+                props: {
+                  children: (
+                    <>
+                      <div>Header</div>
+                    </>
+                  ),
+                },
+              },
+            }}
+          >
             <div className={styles["container"]}></div>
           </Layout>
         </>

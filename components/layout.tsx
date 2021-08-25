@@ -30,10 +30,9 @@ const Layout: FC<Properties> = (properties) => {
     Header: { props: headerProperties },
     Footer: { props: footerProperties },
   } = getComponents(defaultComponents, properties.overrides);
-  console.log(headerProperties);
 
   return (
-    <div className="layout">
+    <div className="box">
       <Header {...headerProperties} />
       <div className={styles["content"]}>{properties.children}</div>
       <Footer {...footerProperties} />

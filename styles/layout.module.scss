@@ -1,9 +1,6 @@
 .content {
-  position: fixed;
+  flex: 1 1 auto;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(151, 151, 151, 0.3);
-  z-index: 10;
+  margin: 0;
 }

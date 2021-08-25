@@ -4,7 +4,6 @@ export const isAuthenticated = (): boolean => {
   const authToken = localStorage.getItem("menmos-web-token");
 
   if (!authToken) {
-    console.log(" authenticated", false);
     return false;
   }
 
@@ -13,4 +12,8 @@ export const isAuthenticated = (): boolean => {
   };
 
   return moment(expiry).isAfter(moment());
+};
+
+export const logout = (): void => {
+  localStorage.removeItem("menmos-web-token");
 };

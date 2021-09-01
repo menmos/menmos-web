@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
+
 import * as auth from "../src/utils/auth";
+
 import styles from "../styles/header.module.scss";
 
 export interface Properties {
@@ -22,9 +24,14 @@ const Header: FC<Properties> = (properties) => {
     return router.push("/");
   };
 
-  const Avatar = () => {
+  const Avatar = (properties: Properties) => {
+    // FIXME:
+    const classes = `${styles["avatar"] || ""} ${
+      properties.hide ? styles["hide"] || "" : ""
+    }`;
+
     return (
-      <div className={styles["avatar"]} onClick={logout} aria-hidden="true">
+      <div className={classes} onClick={logout} aria-hidden="true">
         <span>A</span>
       </div>
     );
@@ -38,7 +45,7 @@ const Header: FC<Properties> = (properties) => {
     <header>
       <nav className={styles["nav"]}>
         <Logo />
-        {isAuthenticated && <Avatar />}
+        <Avatar hide={!isAuthenticated} />
         {!properties.hide && (
           <div className={styles["content"]}>{properties.children}</div>
         )}

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import styles from "../styles/home.module.scss";
 import Layout from "../components/layout";
 import { isAuthenticated } from "../src/utils/auth";
+import { query } from "../src/api/query";
 
 export const Home: FC = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,6 +18,18 @@ export const Home: FC = (): JSX.Element => {
 
     setIsLoading(false);
   }, [isLoading, router]);
+
+  const search = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: Change me
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    await query(event.target.value);
+  };
+
+  const SearchBar = () => (
+    <div className={styles["search"]}>
+      <input onChange={search} placeholder={"Search..."} required />
+    </div>
+  );
 
   return (
     <>
@@ -32,7 +45,7 @@ export const Home: FC = (): JSX.Element => {
                 props: {
                   children: (
                     <>
-                      <div>Header</div>
+                      <SearchBar />
                     </>
                   ),
                 },

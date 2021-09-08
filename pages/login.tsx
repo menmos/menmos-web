@@ -2,11 +2,10 @@ import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { login } from "../src/api/auth";
-import moment from "moment";
 import { useRouter } from "next/router";
 
 import styles from "../styles/login.module.scss";
-import { isAuthenticated } from "../src/utils/auth";
+import { isAuthenticated, setToken } from "../src/utils/auth";
 
 export const Login: FC = (): JSX.Element => {
   const router = useRouter();
@@ -40,13 +39,8 @@ export const Login: FC = (): JSX.Element => {
       const token = await login(fields.username, fields.password);
 
       try {
-        const expiry: string = moment().add(6, "hours").toISOString();
-        localStorage.setItem(
-          "menmos-web-token",
-          JSON.stringify({ token, expiry })
-        );
+        setToken(token);
         setError("");
-
         await router.push("/");
       } catch {
         setError("Authentication token storage failed");

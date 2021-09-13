@@ -5,7 +5,7 @@ import { login } from "../src/api/auth";
 import { useRouter } from "next/router";
 
 import styles from "../styles/login.module.scss";
-import { isAuthenticated, setToken } from "../src/utils/auth";
+import { isAuthenticated, setToken, setUsername } from "../src/utils/auth";
 
 export const Login: FC = (): JSX.Element => {
   const router = useRouter();
@@ -40,12 +40,14 @@ export const Login: FC = (): JSX.Element => {
 
       try {
         setToken(token);
+        setUsername(fields.username);
         setError("");
         await router.push("/");
       } catch {
-        setError("Authentication token storage failed");
+        setError("Unexpected error occurred. Try refreshing this page.");
       }
-    } catch {
+    } catch (error) {
+      console.log(error);
       // TODO: Check HTTP status before assuming it's a username-password problem
       setError("Authentication failed");
     }

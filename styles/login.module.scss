@@ -1,9 +1,11 @@
 .container {
   $primary: rgb(94, 238, 81);
 
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
   height: 100%;
   width: 100%;
-  display: flex;
   background: #f3f2f2;
 
   .form-container {

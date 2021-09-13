@@ -1,6 +1,7 @@
 import moment from "moment";
 
 const TOKEN_KEY = "menmos-web-token";
+const USERNAME_KEY = "menmos-web-username";
 
 interface Token {
   token: string;
@@ -36,6 +37,21 @@ export const getToken = (): string | undefined => {
   return token;
 };
 
+export const setUsername = (username: string): void => {
+  localStorage.setItem(USERNAME_KEY, username);
+};
+
+export const getUsername = (): string | undefined => {
+  const username = localStorage.getItem(USERNAME_KEY);
+
+  if (!username) {
+    return undefined;
+  }
+
+  return username;
+};
+
 export const logout = (): void => {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USERNAME_KEY);
 };

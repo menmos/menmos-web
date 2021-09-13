@@ -32,7 +32,7 @@ const Layout: FC<Properties> = (properties) => {
   } = getComponents(defaultComponents, properties.overrides);
 
   return (
-    <div className="box">
+    <div className={styles["layout"]}>
       <Header {...headerProperties} />
       <div className={styles["content"]}>{properties.children}</div>
       <Footer {...footerProperties} />

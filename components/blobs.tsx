@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 
-import { query, Blob } from "../src/api/query";
+import { query, Blob, Pagination, DEFAULT_PARAMS } from "../src/api/query";
 import { humanReadableFileSize } from "../src/utils/blob";
 import { humanReadableDate } from "../src/utils/date";
 
@@ -14,21 +14,33 @@ export interface Properties {
 export const Blobs: FC<Properties> = (properties): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [blobs, setBlobs] = useState<Blob[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [from, setFrom] = useState<number>(0);
 
   useEffect(() => {
     if (!properties.search) {
       return;
     }
 
-    setIsLoading(true);
+    setTotal(0);
+    setFrom(0);
 
-    void query(properties.search)
-      .then((data) => setBlobs(data.hits))
+    void search(properties.search);
+
+    setIsLoading(true);
+  }, [properties.search]);
+
+  const search = async (expression: string, options?: Pagination) => {
+    void query(expression, options)
+      .then((data) => {
+        setBlobs(data.hits);
+        setTotal(data.total);
+      })
       .then(() => setIsLoading(false))
       .catch(() => {
         // TODO: Handle errors
       });
-  }, [properties.search]);
+  };
 
   const renderTableHeader = () => {
     if (blobs.length === 0) {
@@ -71,13 +83,50 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
     });
   };
 
+  const renderPagination = () => {
+    const up = async () => {
+      const MAX = total;
+      if (from + DEFAULT_PARAMS.size > MAX) {
+        return;
+      }
+
+      setFrom(from + DEFAULT_PARAMS.size);
+      await search(properties.search, { from: from + DEFAULT_PARAMS.size });
+    };
+
+    const down = async () => {
+      const MIN = 0;
+      if (from - DEFAULT_PARAMS.size < MIN) {
+        return;
+      }
+
+      setFrom(from - DEFAULT_PARAMS.size);
+      await search(properties.search, { from: from - DEFAULT_PARAMS.size });
+    };
+
+    return (
+      <div className="pagination">
+        <span>
+          {from + 1}-{Math.min(from + DEFAULT_PARAMS.size, total)} of {total}
+        </span>
+        <div className="actions">
+          <button onClick={down}>&lt;</button>
+          <button onClick={up}>&gt;</button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles["blobs"]}>
       {!isLoading && blobs.length > 0 && (
-        <table>
-          <thead>{renderTableHeader()}</thead>
-          <tbody>{renderTableData()}</tbody>
-        </table>
+        <>
+          <table>
+            <thead>{renderTableHeader()}</thead>
+            <tbody>{renderTableData()}</tbody>
+          </table>
+          {renderPagination()}
+        </>
       )}
       {isLoading && <Spinner />}
     </div>

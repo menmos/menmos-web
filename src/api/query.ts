@@ -34,18 +34,30 @@ export interface Query {
   total: number;
 }
 
-const DEFAULT_PARAMS = {
+export const DEFAULT_PARAMS = {
   from: 0,
   size: 12,
   sign_urls: true,
   facets: true,
 };
 
-export const query = async (expression: string): Promise<Query> => {
+export interface Pagination {
+  from: number;
+}
+
+export const query = async (
+  expression: string,
+  options?: Pagination
+): Promise<Query> => {
+  let params = DEFAULT_PARAMS;
+  if (options) {
+    params = { ...params, ...options };
+  }
+
   return httpClient
     .post<Query>("/query", {
       expression,
-      ...DEFAULT_PARAMS,
+      ...params,
     })
     .then((response) => response.data);
 };

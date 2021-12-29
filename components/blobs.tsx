@@ -4,6 +4,8 @@ import { query, Blob, Pagination, DEFAULT_PARAMS } from "../src/api/query";
 import { humanReadableFileSize } from "../src/utils/blob";
 import { humanReadableDate } from "../src/utils/date";
 
+import { Card } from "./card";
+
 import styles from "../styles/blobs.module.scss";
 import Spinner from "./spinner";
 
@@ -25,7 +27,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
     setTotal(0);
     setFrom(0);
 
-    void search(properties.search);
+    void search(properties.search, {from: 0, size: DEFAULT_PARAMS.size});
 
     setIsLoading(true);
   }, [properties.search]);
@@ -42,45 +44,10 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
       });
   };
 
-  const renderTableHeader = () => {
-    if (blobs.length === 0) {
-      return;
-    }
-
-    return (
-      <tr>
-        <th key={1}>Type</th>
-        <th key={0}>Name</th>
-        <th key={2}>Tags</th>
-        <th key={3}>Size</th>
-        <th key={4}>Created at</th>
-        <th key={5}>Modified at</th>
-      </tr>
-    );
-  };
-
   const renderTableData = () => {
-    if (blobs.length === 0) {
-      return;
-    }
-
-    return blobs.map((blob, index) => {
-      const { url, meta } = blob;
-      return (
-        <tr key={index} onClick={() => window?.open(url, "_blank")?.focus()}>
-          <td>{meta.blob_type}</td>
-          <td>
-            <a href={url} target="_blank" rel="noreferrer">
-              {meta.name}
-            </a>
-          </td>
-          <td>{meta.tags.join(", ")}</td>
-          <td>{humanReadableFileSize(meta.size)}</td>
-          <td>{humanReadableDate(meta.created_at)}</td>
-          <td>{humanReadableDate(meta.modified_at)}</td>
-        </tr>
-      );
-    });
+    return blobs.map((blob, index) => (
+      <Card key={index} blob={blob} />
+    ));
   };
 
   const renderPagination = () => {
@@ -91,7 +58,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
       }
 
       setFrom(from + DEFAULT_PARAMS.size);
-      await search(properties.search, { from: from + DEFAULT_PARAMS.size });
+      await search(properties.search, { from: from + DEFAULT_PARAMS.size, size: DEFAULT_PARAMS.size });
     };
 
     const down = async () => {
@@ -101,7 +68,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
       }
 
       setFrom(from - DEFAULT_PARAMS.size);
-      await search(properties.search, { from: from - DEFAULT_PARAMS.size });
+      await search(properties.search, { from: from - DEFAULT_PARAMS.size, size: DEFAULT_PARAMS.size });
     };
 
     return (
@@ -121,10 +88,9 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
     <div className={styles["blobs"]}>
       {!isLoading && blobs.length > 0 && (
         <>
-          <table>
-            <thead>{renderTableHeader()}</thead>
-            <tbody>{renderTableData()}</tbody>
-          </table>
+          <div className={styles["image-grid"]}>
+            {renderTableData()}
+          </div>
           {renderPagination()}
         </>
       )}

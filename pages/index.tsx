@@ -18,6 +18,7 @@ export const Home: FC = (): JSX.Element => {
     }
 
     setIsLoading(false);
+    setSearch(""); // Empty search by default, returns everything.
   }, [isLoading, router]);
 
   return (

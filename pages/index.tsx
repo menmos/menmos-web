@@ -1,83 +1,61 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+
+import styles from "../styles/home.module.scss";
 import Layout from "../components/layout";
-import { login } from "../src/api/auth";
+import { isAuthenticated } from "../src/utils/auth";
+import Blobs from "../components/blobs";
 
-import styles from "../styles/login.module.scss";
+export const Home: FC = (): JSX.Element => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [search, setSearch] = useState<string>("");
+  const router = useRouter();
 
-export const Login: FC = (): JSX.Element => {
-  const [fields, setFields] = useState<{ username: string; password: string }>({
-    username: "",
-    password: "",
-  });
-
-  const [error, setError] = useState<string>("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-
-    setFields((previousState) => ({
-      ...previousState,
-      [id]: value,
-    }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      const token = await login(fields.username, fields.password);
-
-      try {
-        localStorage.setItem("menmos-web-token", token);
-        setError("");
-      } catch (err) {
-        setError("Authentication token storage failed");
-      }
-    } catch (err) {
-      // TODO: Check HTTP status before assuming it's a username-password problem
-      setError("Authentication failed");
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      void router.push("/login");
     }
-  };
+
+    setIsLoading(false);
+    setSearch(""); // Empty search by default, returns everything.
+  }, [isLoading, router]);
 
   return (
     <>
-      <Head>
-        <title>Login Page</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout>
-        <div className={styles["container"]}>
-          <div className={styles["form-container"]}>
-            <form onSubmit={handleSubmit}>
-              <span className={styles["title"]}>Login</span>
-              <div className={styles["floating-label"]}>
-                <input
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  value={fields.username}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles["floating-label"]}>
-                <input
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  value={fields.password}
-                  onChange={handleChange}
-                />
-              </div>
-              {error && <p className={styles["error"]}>{error}</p>}
-              <button type="submit">Log in</button>
-            </form>
-          </div>
-        </div>
-      </Layout>
+      {!isLoading && (
+        <>
+          <Head>
+            <title>Menmos</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <Layout
+            overrides={{
+              Header: {
+                props: {
+                  children: (
+                    <>
+                      <div className={styles["search"]}>
+                        <input
+                          onChange={(event) => setSearch(event.target.value)}
+                          placeholder={"Search..."}
+                          required
+                        />
+                      </div>
+                    </>
+                  ),
+                },
+              },
+            }}
+          >
+            <div className={styles["container"]}>
+              <Blobs search={search} />
+            </div>
+          </Layout>
+        </>
+      )}
     </>
   );
 };
 
-export default Login;
+export default Home;

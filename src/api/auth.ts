@@ -1,9 +1,4 @@
-import axios from "axios";
-
-// TODO: Throw exception when environment variable is undefined
-const httpClient = axios.create({
-  baseURL: process.env["NEXT_PUBLIC_BASE_URL"],
-});
+import { httpClient } from "./client";
 
 export const login = async (
   username: string,

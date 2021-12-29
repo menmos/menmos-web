@@ -1,8 +1,8 @@
 import { httpClient } from "./client";
 
-enum BlobType {
-  File,
-  Directory,
+export enum BlobType {
+  File = "File",
+  Directory = "Directory",
 }
 
 export interface Blob {
@@ -10,9 +10,7 @@ export interface Blob {
   meta: {
     name: string;
     blob_type: BlobType;
-    metadata: {
-      extension: string;
-    };
+    metadata: { [key: string]: string };
     tags: Array<string>;
     parents: Array<string>;
     size: number;
@@ -36,18 +34,19 @@ export interface Query {
 
 export const DEFAULT_PARAMS = {
   from: 0,
-  size: 12,
+  size: 30,
   sign_urls: true,
   facets: true,
 };
 
 export interface Pagination {
   from: number;
+  size: number;
 }
 
 export const query = async (
   expression: string,
-  options?: Pagination
+  options?: Pagination,
 ): Promise<Query> => {
   let params = DEFAULT_PARAMS;
   if (options) {

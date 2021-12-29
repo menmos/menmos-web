@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 
 import { query, Blob, Pagination, DEFAULT_PARAMS } from "../src/api/query";
-import { humanReadableFileSize } from "../src/utils/blob";
-import { humanReadableDate } from "../src/utils/date";
 
 import { Card } from "./card";
 

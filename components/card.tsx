@@ -24,6 +24,7 @@ export const Card: FC<Properties> = (properties): JSX.Element => {
     }
 
     // The blob is a file.
+    // TODO: Detect content-type and display different content-types properly.
     return (
         <div className={styles["image-item"]}  onClick={() => window?.open(properties.blob.url, "_blank")?.focus()}>
             <div className={styles["media-box"]}>

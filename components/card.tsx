@@ -1,36 +1,58 @@
 import React, { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faFilePdf, faFile } from "@fortawesome/free-solid-svg-icons";
+import mime from "mime/lite";
 
 import styles from "../styles/card.module.scss";
 
 import { Blob, BlobType } from "../src/api/query";
 
 export interface Properties {
-  blob: Blob
+  blob: Blob;
 }
+
+const CardContent = (blob: Blob) => {
+  const extension = mime.getType(blob.meta.name);
+
+  if (blob.meta.blob_type == BlobType.Directory) {
+    return (
+      <>
+        <FontAwesomeIcon icon={faFolder} />
+        <span>{blob.meta.name}</span>
+      </>
+    );
+  } else if (extension?.includes("image")) {
+    return (
+      <>
+        <img src={blob.url} />
+      </>
+    );
+  } else if (extension?.includes("pdf")) {
+    return (
+      <>
+        <FontAwesomeIcon icon={faFilePdf} />
+        <span>{blob.meta.name}</span>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <FontAwesomeIcon icon={faFile} />
+        <span>{blob.meta.name}</span>
+      </>
+    );
+  }
+};
 
 export const Card: FC<Properties> = (properties): JSX.Element => {
+  const blob = properties.blob;
 
-    const blob = properties.blob;
-
-    if (blob.meta.blob_type == BlobType.Directory) {
-        return (<div className={styles["image-item"]}  onClick={() => window?.open(properties.blob.url, "_blank")?.focus()}>
-            <div className={styles["media-box"]}>
-                <FontAwesomeIcon icon={faFolder} />
-                <span>{properties.blob.meta.name}</span>
-            </div>
-        </div>)
-    }
-
-    // The blob is a file.
-    // TODO: Detect content-type and display different content-types properly.
-    return (
-        <div className={styles["image-item"]}  onClick={() => window?.open(properties.blob.url, "_blank")?.focus()}>
-            <div className={styles["media-box"]}>
-                <img src={properties.blob.url}></img>
-            </div>
-        </div>
-    );
-
-}
+  return (
+    <div
+      className={styles["card"]}
+      onClick={() => window?.open(properties.blob.url, "_blank")?.focus()}
+    >
+      {CardContent(blob)}
+    </div>
+  );
+};

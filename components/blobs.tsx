@@ -25,7 +25,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
     setTotal(0);
     setFrom(0);
 
-    void search(properties.search, {from: 0, size: DEFAULT_PARAMS.size});
+    void search(properties.search, { from: 0, size: DEFAULT_PARAMS.size });
 
     setIsLoading(true);
   }, [properties.search]);
@@ -43,9 +43,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
   };
 
   const renderTableData = () => {
-    return blobs.map((blob, index) => (
-      <Card key={index} blob={blob} />
-    ));
+    return blobs.map((blob, index) => <Card key={index} blob={blob} />);
   };
 
   const renderPagination = () => {
@@ -56,7 +54,10 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
       }
 
       setFrom(from + DEFAULT_PARAMS.size);
-      await search(properties.search, { from: from + DEFAULT_PARAMS.size, size: DEFAULT_PARAMS.size });
+      await search(properties.search, {
+        from: from + DEFAULT_PARAMS.size,
+        size: DEFAULT_PARAMS.size,
+      });
     };
 
     const down = async () => {
@@ -66,7 +67,10 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
       }
 
       setFrom(from - DEFAULT_PARAMS.size);
-      await search(properties.search, { from: from - DEFAULT_PARAMS.size, size: DEFAULT_PARAMS.size });
+      await search(properties.search, {
+        from: from - DEFAULT_PARAMS.size,
+        size: DEFAULT_PARAMS.size,
+      });
     };
 
     return (
@@ -86,9 +90,7 @@ export const Blobs: FC<Properties> = (properties): JSX.Element => {
     <div className={styles["blobs"]}>
       {!isLoading && blobs.length > 0 && (
         <>
-          <div className={styles["image-grid"]}>
-            {renderTableData()}
-          </div>
+          <div className={styles["table-data"]}>{renderTableData()}</div>
           {renderPagination()}
         </>
       )}

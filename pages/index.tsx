@@ -6,6 +6,7 @@ import styles from "../styles/home.module.scss";
 import Layout from "../components/layout";
 import { isAuthenticated } from "../src/utils/auth";
 import Blobs from "../components/blobs";
+import { InfiniteScroll } from "../components/infiniteScroll";
 
 export const Home: FC = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -49,7 +50,7 @@ export const Home: FC = (): JSX.Element => {
             }}
           >
             <div className={styles["container"]}>
-              <Blobs search={search} />
+              <InfiniteScroll search={search} />
             </div>
           </Layout>
         </>

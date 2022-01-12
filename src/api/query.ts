@@ -34,7 +34,7 @@ export interface Query {
 
 export const DEFAULT_PARAMS = {
   from: 0,
-  size: 30,
+  size: 10,
   sign_urls: true,
   facets: true,
 };
@@ -46,7 +46,7 @@ export interface Pagination {
 
 export const query = async (
   expression: string,
-  options?: Pagination,
+  options?: Pagination
 ): Promise<Query> => {
   let params = DEFAULT_PARAMS;
   if (options) {

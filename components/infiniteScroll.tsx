@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
-import useState from "react-usestateref";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import { Blob, DEFAULT_PARAMS, Pagination, query } from "../src/api/query";
 import { Card } from "./card";
 
@@ -11,19 +10,10 @@ interface Properties {
 
 export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
   const loadingRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
   const [blobs, setBlobs] = useState<Blob[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [_page, setPage, pageRef] = useState<number>(0);
-  const [_total, setTotal, totalRef] = useState<number>(0);
-  const [_prevY, setPrevY, prevYRef] = useState<number>(0);
-  const [_search, setSearch, searchRef] = useState<string>(properties.search);
-
-  // Additional css
-  const loadingCSS = {
-    height: "100px",
-    margin: "30px",
-  };
+  const [page, setPage] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
 
   // To change the loading icon behavior
   const loadingTextCSS = { display: loading ? "block" : "none" };
@@ -36,31 +26,55 @@ export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
     setBlobs([]);
     setTotal(0);
     setPage(0);
-    setPrevY(0);
-    setSearch(properties.search);
 
     void search(properties.search, { from: 0, size: DEFAULT_PARAMS.size });
   }, [properties.search]);
 
+  const handleObserver = useCallback(
+    async (entities) => {
+      console.log("handleObserver called", entities);
+      const from = (page + 1) * DEFAULT_PARAMS.size;
+      console.log(
+        "from, page, total, properties.search",
+        from,
+        page,
+        total,
+        properties.search
+      );
+      if (!properties.search.trim() || (total && from >= total)) {
+        return;
+      }
+
+      const target = entities[0];
+      if (target.isIntersecting) {
+        await search(properties.search, {
+          from,
+          size: DEFAULT_PARAMS.size,
+        });
+
+        setPage((previousPage) => previousPage + 1);
+      }
+    },
+    [page]
+  );
+
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(handleObserver.bind(this), {
+    if (!loadingRef.current) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(handleObserver, {
       root: null,
       rootMargin: "0px",
       threshold: 1.0,
     });
-  }, []);
 
-  useEffect(() => {
-    if (!observerRef.current || !loadingRef.current) {
-      return;
-    }
-
-    observerRef.current.observe(loadingRef.current);
+    observer.observe(loadingRef.current);
 
     return () => {
-      observerRef.current?.disconnect();
+      observer.disconnect();
     };
-  }, [loadingRef]);
+  }, [handleObserver]);
 
   const search = async (expression: string, options?: Pagination) => {
     setLoading(true);
@@ -76,37 +90,14 @@ export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
       });
   };
 
-  const handleObserver = (entities: any, _: IntersectionObserver) => {
-    const total = totalRef.current;
-    const prevY = prevYRef.current;
-    const page = pageRef.current;
-    const searchExpression = searchRef.current;
-    const from = (page + 1) * DEFAULT_PARAMS.size;
-
-    if (total && from >= total) {
-      return;
-    }
-
-    const y = entities[0].intersectionRect.y;
-    if (y > prevY) {
-      search(searchExpression, {
-        from,
-        size: DEFAULT_PARAMS.size,
-      });
-
-      setPage((previousPage) => previousPage + 1);
-    }
-    setPrevY(y);
-  };
-
   return (
     <div className={styles["blobs"]}>
-      <div className={styles["table-data"]} style={{ minHeight: "800px" }}>
+      <div className={styles["table-data"]}>
         {blobs.map((blob, index) => (
           <Card key={index} blob={blob} />
         ))}
       </div>
-      <div ref={loadingRef} style={loadingCSS}>
+      <div ref={loadingRef}>
         <span style={loadingTextCSS}>Loading...</span>
       </div>
     </div>

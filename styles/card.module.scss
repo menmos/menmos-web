@@ -1,10 +1,9 @@
 .card {
+  width: 300px;
+
   transition: box-shadow 0.3s;
   border-radius: 10px;
 
-  margin: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
   margin-bottom: 10px;
   break-inside: avoid;
 
@@ -15,10 +14,6 @@
   img {
     border-radius: 10px;
     max-width: 100%;
-    display: block;
-
-    grid-row: 1 / -1;
-    grid-column: 1;
   }
 }
 

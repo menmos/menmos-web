@@ -26,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "axios": "^0.21.4",
+    "bricks.js": "^1.8.0",
     "mime": "^3.0.0",
     "moment": "^2.29.1",
     "next": "11.1.2",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.2",
+    "@types/bricks.js": "^1.8.2",
     "@types/mime": "^2.0.3",
     "@types/react": "^17.0.20",
     "@typescript-eslint/eslint-plugin": "^4.31.0",

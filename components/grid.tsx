@@ -8,18 +8,18 @@ export interface Properties {
   packed?: string;
   sizes?: Bricks.SizeDetail[];
   loadMore?: () => void;
+  hasLoaded: boolean;
 }
 
 export const Grid: FC<Properties> = ({
   children,
+  hasLoaded,
   packed = "data-packed",
   sizes = [
     { columns: 1, gutter: 20 },
     { mq: "768px", columns: 2, gutter: 20 },
-    { mq: "1024px", columns: 3, gutter: 20 },
-    { mq: "1280px", columns: 4, gutter: 20 },
-    { mq: "1536px", columns: 5, gutter: 20 },
-    { mq: "1792px", columns: 6, gutter: 20 },
+    { mq: "1280px", columns: 3, gutter: 20 },
+    { mq: "1792px", columns: 4, gutter: 20 },
   ],
   loadMore,
 }: Properties) => {
@@ -30,6 +30,12 @@ export const Grid: FC<Properties> = ({
   );
 
   useEffect(() => {
+    if (hasLoaded) {
+      instance?.pack();
+    }
+  }, [hasLoaded]);
+
+  useEffect(() => {
     if (!container.current) {
       return;
     }
@@ -38,16 +44,14 @@ export const Grid: FC<Properties> = ({
       container: container.current,
       packed,
       sizes,
+      position: true,
     });
 
     instance.resize(true);
-
-    if (children.length) {
-      instance.pack();
-    }
+    instance.pack();
 
     setInstance(instance);
-  }, [container]);
+  }, [container.current]);
 
   useEffect(() => {
     if ((previousChildrenLength === 0 && children.length === 0) || !instance) {
@@ -59,11 +63,11 @@ export const Grid: FC<Properties> = ({
     } else {
       instance.pack();
     }
-
-    return () => {
-      instance.resize(false);
-    };
   }, [children, instance]);
+
+  if (!children.length) {
+    return null;
+  }
 
   return (
     <InfiniteScroll callback={loadMore}>

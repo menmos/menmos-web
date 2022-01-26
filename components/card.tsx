@@ -9,9 +9,13 @@ import { Blob, BlobType } from "../src/api/query";
 
 export interface Properties {
   blob: Blob;
+  onLoad?: React.ReactEventHandler<HTMLImageElement>;
 }
 
-const CardContent = (blob: Blob) => {
+const CardContent = (
+  blob: Blob,
+  onLoad: React.ReactEventHandler<HTMLImageElement> | undefined
+) => {
   const extension = mime.getType(blob.meta.name);
 
   if (blob.meta.blob_type == BlobType.Directory) {
@@ -24,7 +28,7 @@ const CardContent = (blob: Blob) => {
   } else if (extension?.includes("image")) {
     return (
       <>
-        <img src={blob.url} />
+        <img src={blob.url} onLoad={onLoad} />
       </>
     );
   } else if (extension?.includes("pdf")) {
@@ -45,14 +49,14 @@ const CardContent = (blob: Blob) => {
 };
 
 export const Card: FC<Properties> = (properties): JSX.Element => {
-  const blob = properties.blob;
+  const { blob, onLoad } = properties;
 
   return (
     <div
       className={styles["card"]}
       onClick={() => window?.open(properties.blob.url, "_blank")?.focus()}
     >
-      {CardContent(blob)}
+      {CardContent(blob, onLoad)}
     </div>
   );
 };

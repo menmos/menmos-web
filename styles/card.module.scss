@@ -1,10 +1,6 @@
 .card {
   width: 300px;
 
-  transition: box-shadow 0.3s;
-  border-radius: 10px;
-
-  margin-bottom: 10px;
   break-inside: avoid;
 
   span {
@@ -12,11 +8,9 @@
   }
 
   img {
-    border-radius: 10px;
+    height: 100%;
     max-width: 100%;
+    display: block;
+    margin: auto;
   }
-}
-
-.card:hover {
-  box-shadow: 0 0 20px #babfc2;
 }

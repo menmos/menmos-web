@@ -1,16 +1,19 @@
 .layout {
-  position: relative;
   display: flex;
-  flex-flow: column;
-  height: 100%;
+  flex-direction: column;
+  flex: 1 0 auto;
+
   min-height: 100%;
 }
 
 .content {
-  padding-bottom: 50px;
   display: flex;
-  flex-flow: column;
-  height: 100%;
+  flex-direction: column;
+  flex: 1 1 auto;
+
   background: #f3f2f2;
-  padding: 40px 20%;
+
+  section {
+    margin: 50px auto;
+  }
 }

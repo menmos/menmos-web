@@ -10,7 +10,11 @@ export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
 
   const handleObserver = async (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
-    if (target?.isIntersecting) {
+    if (!target) {
+      return;
+    }
+
+    if (target.isIntersecting) {
       properties.callback?.();
     }
   };
@@ -21,7 +25,7 @@ export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
     }
 
     const observer = new IntersectionObserver(handleObserver, {
-      root: null,
+      root: null, // window by default
       rootMargin: "0px",
       threshold: 1.0,
     });
@@ -29,7 +33,9 @@ export const InfiniteScroll: FC<Properties> = (properties): JSX.Element => {
     observer.observe(pageEnd.current);
 
     return () => {
-      observer.disconnect();
+      if (pageEnd.current) {
+        observer.unobserve(pageEnd.current);
+      }
     };
   }, [handleObserver]);
 

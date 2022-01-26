@@ -7,7 +7,7 @@ import {
   ComponentProperties,
   Components,
   getComponents,
-} from "./utils/get-components";
+} from "./utils/getComponents";
 
 const defaultComponents = {
   Header: {
@@ -25,6 +25,10 @@ type Properties = {
   overrides?: ComponentProperties<Components, ComponentNames>;
 };
 
+const Content: FC = (properties) => (
+  <div className={styles["content"]}>{properties.children}</div>
+);
+
 const Layout: FC<Properties> = (properties) => {
   const {
     Header: { props: headerProperties },
@@ -34,7 +38,7 @@ const Layout: FC<Properties> = (properties) => {
   return (
     <div className={styles["layout"]}>
       <Header {...headerProperties} />
-      <div className={styles["content"]}>{properties.children}</div>
+      <Content>{properties.children}</Content>
       <Footer {...footerProperties} />
     </div>
   );

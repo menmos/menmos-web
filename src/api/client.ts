@@ -12,7 +12,10 @@ httpClient.interceptors.request.use(
   (config) => {
     const token = auth.getToken();
     if (token) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!config.headers) {
+        config.headers = {};
+      }
+
       config.headers["Authorization"] = `Bearer ${token}`;
     }
 

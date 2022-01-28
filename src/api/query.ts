@@ -46,17 +46,17 @@ export interface Pagination {
 
 export const query = async (
   expression: string,
-  options?: Pagination,
+  options?: Pagination
 ): Promise<Query> => {
-  let params = DEFAULT_PARAMS;
+  let parameters = DEFAULT_PARAMS;
   if (options) {
-    params = { ...params, ...options };
+    parameters = { ...parameters, ...options };
   }
 
   return httpClient
     .post<Query>("/query", {
       expression,
-      ...params,
+      ...parameters,
     })
     .then((response) => response.data);
 };

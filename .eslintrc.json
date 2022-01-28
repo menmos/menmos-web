@@ -15,11 +15,12 @@
       "plugins": ["@typescript-eslint"],
       "extends": [
         "eslint:recommended",
-        "next",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:unicorn/recommended",
-        "prettier"
+        "plugin:prettier/recommended",
+        "prettier",
+        "plugin:@next/next/core-web-vitals"
       ]
     },
     {

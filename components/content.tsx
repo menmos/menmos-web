@@ -18,13 +18,20 @@ export const Content: FC<Properties> = ({ search }): JSX.Element => {
     setBlobs([]);
     setTotal(0);
     setPage(0);
+    setNbLoaded(0);
   }, [search]);
 
   useEffect(() => {
-    if (total === 0 && page === 0 && blobs.length === 0 && search) {
+    if (
+      total === 0 &&
+      page === 0 &&
+      blobs.length === 0 &&
+      nbLoaded === 0 &&
+      search
+    ) {
       loadMore();
     }
-  }, [total, page, blobs]);
+  }, [total, page, blobs, nbLoaded]);
 
   const loadMore = useCallback(async () => {
     const { size } = DEFAULT_PARAMS;

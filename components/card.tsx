@@ -21,7 +21,7 @@ const CardContent = (
   if (blob.meta.blob_type == BlobType.Directory) {
     return (
       <>
-        <FontAwesomeIcon icon={faFolder} />
+        <FontAwesomeIcon icon={faFolder} size="10x" />
         <span>{blob.meta.name}</span>
       </>
     );
@@ -34,14 +34,14 @@ const CardContent = (
   } else if (extension?.includes("pdf")) {
     return (
       <>
-        <FontAwesomeIcon icon={faFilePdf} />
+        <FontAwesomeIcon icon={faFilePdf} size="10x" />
         <span>{blob.meta.name}</span>
       </>
     );
   } else {
     return (
       <>
-        <FontAwesomeIcon icon={faFile} />
+        <FontAwesomeIcon icon={faFile} size="10x" />
         <span>{blob.meta.name}</span>
       </>
     );

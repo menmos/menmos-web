@@ -5,22 +5,44 @@ import { usePrevious } from "./utils/usePrevious";
 
 export interface Properties {
   children: React.ReactChild[];
-  packed?: string;
   sizes?: Bricks.SizeDetail[];
   loadMore?: () => void;
   hasLoaded: boolean;
 }
 
+const generateBreakpoints = ({
+  count,
+  itemSize,
+  gutter,
+}: {
+  count: number;
+  itemSize: number;
+  gutter: number;
+}): Bricks.SizeDetail[] => {
+  const breakpoints: Bricks.SizeDetail[] = [];
+
+  for (let i = 1; i <= count; i++) {
+    const breakpoint: Bricks.SizeDetail = {
+      mq: `${i * (itemSize + gutter)}px`,
+      columns: i,
+      gutter,
+    };
+
+    // We don´t want any minimum viewport width for the first breakpoint
+    if (i === 1) {
+      delete breakpoint.mq;
+    }
+
+    breakpoints.push(breakpoint);
+  }
+
+  return breakpoints;
+};
+
 export const Grid: FC<Properties> = ({
   children,
   hasLoaded,
-  packed = "data-packed",
-  sizes = [
-    { columns: 1, gutter: 20 },
-    { mq: "768px", columns: 2, gutter: 20 },
-    { mq: "1280px", columns: 3, gutter: 20 },
-    { mq: "1792px", columns: 4, gutter: 20 },
-  ],
+  sizes = generateBreakpoints({ count: 20, itemSize: 300, gutter: 20 }),
   loadMore,
 }: Properties) => {
   const previousChildrenLength = usePrevious<number>(children.length);
@@ -29,6 +51,8 @@ export const Grid: FC<Properties> = ({
     undefined
   );
 
+  // Semi-hack to make sure we pack everything once the images and videos are loaded
+  // It ensures that the grid computations will be done on fully rendered content
   useEffect(() => {
     if (hasLoaded) {
       instance?.pack();
@@ -42,7 +66,7 @@ export const Grid: FC<Properties> = ({
 
     const instance = Bricks({
       container: container.current,
-      packed,
+      packed: "data-packed",
       sizes,
       position: true,
     });

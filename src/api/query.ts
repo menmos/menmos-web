@@ -34,7 +34,7 @@ export interface QueryResult {
 
 export const DEFAULT_PARAMS = {
   from: 0,
-  size: 10,
+  size: 50,
   sign_urls: true,
   facets: true,
 };

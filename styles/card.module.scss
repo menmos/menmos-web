@@ -1,30 +1,23 @@
-.image-item {
-    overflow: hidden;
-    text-align: center;
+.card {
+  width: 300px;
+  min-height: 200px;
 
-    padding: 1em;
+  background-color: white;
 
-    .media-box {
-        transition: box-shadow .3s;
-        border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        span {
-            margin: 1em;
-        }
+  break-inside: avoid;
 
-        img{
-            border-radius: 10px;
-            display: flex;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            max-height: 350px;
-        }
+  span {
+    margin: 1em;
+  }
 
-    }
-    .media-box:hover {
-        box-shadow: 0 0 20px #BABFC2;
-    }
-
+  img {
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+  }
 }
-

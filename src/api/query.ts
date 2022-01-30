@@ -25,7 +25,7 @@ interface Facets {
   meta: { [meta: string]: { [key: string]: number } };
 }
 
-export interface Query {
+export interface QueryResult {
   count: number;
   facets: Facets | null;
   hits: Array<Blob>;
@@ -34,7 +34,7 @@ export interface Query {
 
 export const DEFAULT_PARAMS = {
   from: 0,
-  size: 30,
+  size: 50,
   sign_urls: true,
   facets: true,
 };
@@ -46,15 +46,15 @@ export interface Pagination {
 
 export const query = async (
   expression: string,
-  options?: Pagination,
-): Promise<Query> => {
+  options?: Pagination
+): Promise<QueryResult> => {
   let params = DEFAULT_PARAMS;
   if (options) {
     params = { ...params, ...options };
   }
 
   return httpClient
-    .post<Query>("/query", {
+    .post<QueryResult>("/query", {
       expression,
       ...params,
     })

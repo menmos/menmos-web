@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 
 import { Grid } from "../components/grid";
 import { query, DEFAULT_PARAMS, Blob } from "../src/api/query";
-import { Card } from "../components/card";
+import { Card } from "./card/card";
 
 interface Properties {
   search: string;

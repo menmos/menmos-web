@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Blob } from "../../../src/api/query";
+import { Blob } from "../../../api/query";
 
 export interface Properties {
   blob: Blob;

@@ -1,20 +1,17 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 
-import * as auth from "../src/utils/auth";
+import useAuth, { getUsername } from "../router/useAuth";
+
+import Profile from "./profile";
 
 import styles from "../styles/header.module.scss";
-import Profile from "./profile";
 
 export interface Properties {
   hide?: boolean;
 }
 
 const Header: FC<Properties> = (properties) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsAuthenticated(auth.isAuthenticated());
-  }, []);
+  const { isAuthenticated } = useAuth();
 
   const Logo = () => {
     return <span className={styles["logo"]}>MENMOS</span>;
@@ -24,8 +21,8 @@ const Header: FC<Properties> = (properties) => {
     <header className={styles["header"]}>
       <nav>
         <Logo />
-        {isAuthenticated && (
-          <Profile username={auth.getUsername() || "Username"} />
+        {isAuthenticated() && (
+          <Profile username={getUsername() || "Username"} />
         )}
         {!properties.hide && (
           <div className={styles["content"]}>{properties.children}</div>

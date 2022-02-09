@@ -1,22 +1,22 @@
 import React, { FC, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-solid-svg-icons";
+import { faFolder } from "@fortawesome/free-solid-svg-icons";
 
-import { Blob } from "../../../src/api/query";
+import { Blob } from "../../../api/query";
 
 export interface Properties {
   blob: Blob;
   onLoad?: () => void;
 }
 
-export const FileCard: FC<Properties> = ({ blob, onLoad }) => {
+export const DirectoryCard: FC<Properties> = ({ blob, onLoad }) => {
   useEffect(() => {
     onLoad?.();
   }, []);
 
   return (
     <div>
-      <FontAwesomeIcon icon={faFile} size="10x" />
+      <FontAwesomeIcon icon={faFolder} size="10x" />
       <span>{blob.meta.name}</span>
     </div>
   );

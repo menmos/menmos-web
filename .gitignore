@@ -8,9 +8,9 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# parcel
+.parcel-cache
+dist
 
 # production
 /build

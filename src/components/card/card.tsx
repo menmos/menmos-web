@@ -3,7 +3,7 @@ import mime from "mime/lite";
 
 import styles from "../../styles/card.module.scss";
 
-import { Blob, BlobType } from "../../src/api/query";
+import { Blob, BlobType } from "../../api/query";
 import { DirectoryCard } from "./types/directory";
 import { ImageCard } from "./types/images";
 import { PDFCard } from "./types/pdf";

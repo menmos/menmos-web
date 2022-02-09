@@ -1,22 +1,22 @@
 import React, { FC, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faFile } from "@fortawesome/free-solid-svg-icons";
 
-import { Blob } from "../../../src/api/query";
+import { Blob } from "../../../api/query";
 
 export interface Properties {
   blob: Blob;
   onLoad?: () => void;
 }
 
-export const PDFCard: FC<Properties> = ({ blob, onLoad }) => {
+export const FileCard: FC<Properties> = ({ blob, onLoad }) => {
   useEffect(() => {
     onLoad?.();
   }, []);
 
   return (
     <div>
-      <FontAwesomeIcon icon={faFilePdf} size="10x" />
+      <FontAwesomeIcon icon={faFile} size="10x" />
       <span>{blob.meta.name}</span>
     </div>
   );

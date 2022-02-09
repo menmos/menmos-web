@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
-import * as auth from "../src/utils/auth";
+import { logout } from "../router/useAuth";
 
 import styles from "../styles/profile.module.scss";
 
@@ -10,12 +10,11 @@ type Properties = {
 };
 
 const Profile: FC<Properties> = (properties) => {
-  const router = useRouter();
+  const navigate = useNavigate();
 
-  const logout = async () => {
-    auth.logout();
-
-    return router.push("/");
+  const onClick = async () => {
+    await logout();
+    navigate("/login");
   };
 
   const Avatar = () => {
@@ -30,7 +29,7 @@ const Profile: FC<Properties> = (properties) => {
     <div className={styles["profile"]}>
       <Avatar />
       <div className={styles["profile-actions"]}>
-        <button onClick={logout}>Logout</button>
+        <button onClick={onClick}>Logout</button>
       </div>
     </div>
   );

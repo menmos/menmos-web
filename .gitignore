@@ -33,7 +33,6 @@ yarn-error.log*
 !.vscode/extensions.json
 .idea
 
-
 # Yarn files
 .pnp.*
 .yarn/*

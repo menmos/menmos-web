@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { logout } from "../router/useAuth";
+import { logout } from "../utils/useAuth";
 
 import styles from "../styles/profile.module.scss";
 

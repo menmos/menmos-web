@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "../components/layout";
-import useAuth from "../router/useAuth";
+import useAuth from "../utils/useAuth";
 
-import * as styles from "../styles/login.module.scss";
+import styles from "../styles/login.module.scss";
 
 export const Login: FC = () => {
   const navigate = useNavigate();

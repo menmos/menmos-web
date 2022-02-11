@@ -1,11 +1,11 @@
 import axios, { AxiosError } from "axios";
 
 import history from "../utils/history";
-import { getToken, logout } from "../router/useAuth";
+import { getToken, logout } from "../utils/useAuth";
 
 // TODO: Throw exception when environment variable is undefined
 export const httpClient = axios.create({
-  baseURL: process.env["NEXT_PUBLIC_BASE_URL"],
+  baseURL: process.env["PUBLIC_URL"],
 });
 
 httpClient.interceptors.request.use(

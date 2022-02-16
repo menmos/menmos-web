@@ -1,62 +1,59 @@
-import { httpClient } from "./client";
+import { httpClient } from './client'
 
 export enum BlobType {
-  File = "File",
-  Directory = "Directory",
+  File = 'File',
+  Directory = 'Directory'
 }
 
 export interface Blob {
-  id: string;
+  id: string
   meta: {
-    name: string;
-    blob_type: BlobType;
-    metadata: { [key: string]: string };
-    tags: Array<string>;
-    parents: Array<string>;
-    size: number;
-    created_at: string;
-    modified_at: string;
-  };
-  url: string;
+    name: string
+    blob_type: BlobType
+    metadata: { [key: string]: string }
+    tags: Array<string>
+    parents: Array<string>
+    size: number
+    created_at: string
+    modified_at: string
+  }
+  url: string
 }
 
 interface Facets {
-  tags: { [tag: string]: number };
-  meta: { [meta: string]: { [key: string]: number } };
+  tags: { [tag: string]: number }
+  meta: { [meta: string]: { [key: string]: number } }
 }
 
 export interface QueryResult {
-  count: number;
-  facets: Facets | null;
-  hits: Array<Blob>;
-  total: number;
+  count: number
+  facets: Facets | null
+  hits: Array<Blob>
+  total: number
 }
 
 export const DEFAULT_PARAMS = {
   from: 0,
   size: 50,
   sign_urls: true,
-  facets: true,
-};
-
-export interface Pagination {
-  from: number;
-  size: number;
+  facets: true
 }
 
-export const query = async (
-  expression: string,
-  options?: Pagination
-): Promise<QueryResult> => {
-  let params = DEFAULT_PARAMS;
+export interface Pagination {
+  from: number
+  size: number
+}
+
+export const query = async (expression: string, options?: Pagination): Promise<QueryResult> => {
+  let parameters = DEFAULT_PARAMS
   if (options) {
-    params = { ...params, ...options };
+    parameters = { ...parameters, ...options }
   }
 
   return httpClient
-    .post<QueryResult>("/query", {
+    .post<QueryResult>('/query', {
       expression,
-      ...params,
+      ...parameters
     })
-    .then((response) => response.data);
-};
+    .then((response) => response.data)
+}

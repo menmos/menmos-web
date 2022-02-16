@@ -1,63 +1,57 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from 'react'
 
-import { Grid } from "./grid";
-import { query, DEFAULT_PARAMS, Blob } from "../api/query";
-import { Card } from "./card/card";
+import { Grid } from './grid'
+import { query, DEFAULT_PARAMS, Blob } from '../api/query'
+import { Card } from './card/card'
 
 interface Properties {
-  search: string;
+  search: string
 }
 
 export const Content: FC<Properties> = ({ search }): JSX.Element => {
-  const [blobs, setBlobs] = useState<Blob[]>([]);
-  const [total, setTotal] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
-  const [nbLoaded, setNbLoaded] = useState<number>(0);
-
-  useEffect(() => {
-    setBlobs([]);
-    setTotal(0);
-    setPage(0);
-    setNbLoaded(0);
-  }, [search]);
-
-  useEffect(() => {
-    if (
-      total === 0 &&
-      page === 0 &&
-      blobs.length === 0 &&
-      nbLoaded === 0 &&
-      search
-    ) {
-      loadMore();
-    }
-  }, [total, page, blobs, nbLoaded]);
+  const [blobs, setBlobs] = useState<Blob[]>([])
+  const [total, setTotal] = useState<number>(0)
+  const [page, setPage] = useState<number>(0)
+  const [nbLoaded, setNbLoaded] = useState<number>(0)
 
   const loadMore = useCallback(async () => {
-    const { size } = DEFAULT_PARAMS;
-    const from = page * size;
-    const hasMore = !total || from < total;
+    const { size } = DEFAULT_PARAMS
+    const from = page * size
+    const hasMore = !total || from < total
 
     if (!search || !hasMore || !(nbLoaded === blobs.length)) {
-      return;
+      return
     }
 
     await query(search, { from, size })
       .then((data) => {
         if (data.count > 0) {
-          setBlobs((previousBlobs) => [...previousBlobs, ...data.hits]);
-          setTotal(data.total);
-          setPage((previousPage) => previousPage + 1);
+          setBlobs((previousBlobs) => [...previousBlobs, ...data.hits])
+          setTotal(data.total)
+          setPage((previousPage) => previousPage + 1)
         }
       })
       .catch(() => {
         // TODO: Handle errors
-      });
-  }, [page, total, search, nbLoaded]);
+      })
+  }, [page, total, search, nbLoaded, blobs.length])
 
   const onload = useCallback(() => {
-    setNbLoaded((prev) => prev + 1);
-  }, [nbLoaded]);
+    setNbLoaded((previous) => previous + 1)
+  }, [])
+
+  useEffect(() => {
+    setBlobs([])
+    setTotal(0)
+    setPage(0)
+    setNbLoaded(0)
+  }, [search])
+
+  useEffect(() => {
+    if (total === 0 && page === 0 && blobs.length === 0 && nbLoaded === 0 && search) {
+      void loadMore()
+    }
+  }, [total, page, blobs, nbLoaded, search, loadMore])
 
   return (
     <section>
@@ -69,7 +63,7 @@ export const Content: FC<Properties> = ({ search }): JSX.Element => {
         </Grid>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default Content;
+export default Content

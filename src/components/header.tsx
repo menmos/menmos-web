@@ -1,35 +1,31 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 
-import useAuth, { getUsername } from "../utils/useAuth";
+import useAuth, { getUsername } from '../utils/use-auth'
 
-import Profile from "./profile";
+import Profile from './profile'
 
-import styles from "../styles/header.module.scss";
+import styles from '../styles/header.module.scss'
 
 export interface Properties {
-  hide?: boolean;
+  hide?: boolean
 }
 
 const Header: FC<Properties> = (properties) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth()
 
   const Logo = () => {
-    return <span className={styles["logo"]}>MENMOS</span>;
-  };
+    return <span className={styles['logo']}>MENMOS</span>
+  }
 
   return (
-    <header className={styles["header"]}>
+    <header className={styles['header']}>
       <nav>
         <Logo />
-        {isAuthenticated() && (
-          <Profile username={getUsername() || "Username"} />
-        )}
-        {!properties.hide && (
-          <div className={styles["content"]}>{properties.children}</div>
-        )}
+        {isAuthenticated() && <Profile username={getUsername() || 'Username'} />}
+        {!properties.hide && <div className={styles['content']}>{properties.children}</div>}
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -5,33 +5,29 @@
       "version": "detect"
     }
   },
+  "ignorePatterns": ["*.js", "**/dist/**"],
   "overrides": [
     {
       "files": ["**/*.{ts,tsx}"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.base.json"
       },
       "plugins": ["@typescript-eslint"],
       "extends": [
         "eslint:recommended",
-        "next",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:unicorn/recommended",
+        "plugin:prettier/recommended",
         "prettier"
       ]
     },
     {
       "files": ["**/*.tsx"],
-      "extends": [
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended"
-      ]
+      "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:jsx-a11y/recommended"]
     },
     {
-      "files": ["**/__tests__/**/*.ts"],
+      "files": ["**/tests/**/*.test.ts(x)"],
       "plugins": ["jest"],
       "extends": ["plugin:jest/recommended"]
     }

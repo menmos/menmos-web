@@ -1,27 +1,14 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowUnreachableCode": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitReturns": true,
-    "outDir": "build",
     "noEmit": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "allowJs": false,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true
+    "resolveJsonModule": true
   },
 
   "include": ["src"]

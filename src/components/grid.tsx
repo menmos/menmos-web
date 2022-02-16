@@ -1,101 +1,100 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import Bricks from "bricks.js";
-import { InfiniteScroll } from "./infiniteScroll";
-import { usePrevious } from "./utils/usePrevious";
+import React, { useEffect, useRef, useState } from 'react'
+import Bricks from 'bricks.js'
+import { InfiniteScroll } from './infinite-scroll'
+import { usePrevious } from './utils/use-previous'
 
 export interface Properties {
-  children: React.ReactChild[];
-  sizes?: Bricks.SizeDetail[];
-  loadMore?: () => void;
-  hasLoaded: boolean;
+  children: React.ReactChild[]
+  sizes?: Bricks.SizeDetail[]
+  loadMore?: () => void
+  hasLoaded: boolean
 }
 
 const generateBreakpoints = ({
   count,
   itemSize,
-  gutter,
+  gutter
 }: {
-  count: number;
-  itemSize: number;
-  gutter: number;
+  count: number
+  itemSize: number
+  gutter: number
 }): Bricks.SizeDetail[] => {
-  const breakpoints: Bricks.SizeDetail[] = [];
+  const breakpoints: Bricks.SizeDetail[] = []
 
-  for (let i = 1; i <= count; i++) {
+  for (let index = 1; index <= count; index++) {
     const breakpoint: Bricks.SizeDetail = {
-      mq: `${i * (itemSize + gutter)}px`,
-      columns: i,
-      gutter,
-    };
-
-    // We don´t want any minimum viewport width for the first breakpoint
-    if (i === 1) {
-      delete breakpoint.mq;
+      mq: `${index * (itemSize + gutter)}px`,
+      columns: index,
+      gutter
     }
 
-    breakpoints.push(breakpoint);
+    // We don´t want any minimum viewport width for the first breakpoint
+    if (index === 1) {
+      delete breakpoint.mq
+    }
+
+    breakpoints.push(breakpoint)
   }
 
-  return breakpoints;
-};
+  return breakpoints
+}
 
-export const Grid: FC<Properties> = ({
+export const Grid = ({
   children,
   hasLoaded,
   sizes = generateBreakpoints({ count: 20, itemSize: 300, gutter: 20 }),
-  loadMore,
+  loadMore
 }: Properties) => {
-  const previousChildrenLength = usePrevious<number>(children.length);
-  const container = useRef<HTMLDivElement>(null);
-  const [instance, setInstance] = useState<Bricks.Instance | undefined>(
-    undefined
-  );
+  const previousChildrenLength = usePrevious<number>(children.length)
+  const container = useRef<HTMLDivElement>(null)
+  const [instance, setInstance] = useState<Bricks.Instance | undefined>()
 
   // Semi-hack to make sure we pack everything once the images and videos are loaded
   // It ensures that the grid computations will be done on fully rendered content
   useEffect(() => {
     if (hasLoaded) {
-      instance?.pack();
+      instance?.pack()
     }
-  }, [hasLoaded]);
+  }, [hasLoaded, instance])
 
   useEffect(() => {
     if (!container.current) {
-      return;
+      return
     }
 
     const instance = Bricks({
       container: container.current,
-      packed: "data-packed",
+      packed: 'data-packed',
       sizes,
-      position: true,
-    });
+      position: true
+    })
 
-    instance.resize(true);
-    instance.pack();
+    instance.resize(true)
+    instance.pack()
 
-    setInstance(instance);
-  }, [container.current]);
+    setInstance(instance)
+  }, [sizes])
 
   useEffect(() => {
     if ((previousChildrenLength === 0 && children.length === 0) || !instance) {
-      return;
+      return
     }
 
     if (children.length > previousChildrenLength) {
-      instance.update();
+      instance.update()
     } else {
-      instance.pack();
+      instance.pack()
     }
-  }, [children, instance]);
+  }, [children, instance, previousChildrenLength])
 
-  if (!children.length) {
-    return null;
+  if (children.length === 0) {
+    // eslint-disable-next-line unicorn/no-null
+    return null
   }
 
   return (
     <InfiniteScroll callback={loadMore}>
       <div ref={container}>{children}</div>
     </InfiniteScroll>
-  );
-};
+  )
+}

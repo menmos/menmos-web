@@ -1,13 +1,10 @@
 .card {
   width: 300px;
   min-height: 200px;
-
   background-color: white;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   break-inside: avoid;
 
   span {

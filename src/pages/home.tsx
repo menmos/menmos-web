@@ -1,39 +1,40 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { FC, useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import Layout from "../components/layout";
-import useAuth from "../utils/useAuth";
-import { debounce } from "../components/utils/debounce";
-import { Content } from "../components/content";
+import Layout from '../components/layout'
+import useAuth from '../utils/use-auth'
+import { debounce } from '../components/utils/debounce'
+import { Content } from '../components/content'
 
-import styles from "../styles/home.module.scss";
+import styles from '../styles/home.module.scss'
 
 export const Home: FC = (): JSX.Element => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [search, setSearch] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [search, setSearch] = useState<string>('')
 
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isLoading) {
-      return;
+      return
     }
 
     if (!isAuthenticated()) {
-      navigate("/login");
+      navigate('/login')
     }
 
-    setIsLoading(false);
-    setSearch(""); // Empty search by default, returns everything.
-  }, [isLoading]);
+    setIsLoading(false)
+    setSearch('') // Empty search by default, returns everything.
+  }, [isLoading, isAuthenticated, navigate])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onSearch = useCallback(
     debounce((value: string) => {
-      setSearch(value.trim());
+      setSearch(value.trim())
     }, 500),
     []
-  );
+  )
 
   return (
     <>
@@ -44,24 +45,20 @@ export const Home: FC = (): JSX.Element => {
               props: {
                 children: (
                   <>
-                    <div className={styles["search"]}>
-                      <input
-                        onChange={(event) => onSearch(event.target.value)}
-                        placeholder={"Search..."}
-                        required
-                      />
+                    <div className={styles['search']}>
+                      <input onChange={(event) => onSearch(event.target.value)} placeholder={'Search...'} required />
                     </div>
                   </>
-                ),
-              },
-            },
+                )
+              }
+            }
           }}
         >
           <Content search={search} />
         </Layout>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

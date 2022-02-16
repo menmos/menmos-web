@@ -10,9 +10,6 @@
 .parcel-cache
 dist
 
-# production
-/build
-
 # misc
 .DS_Store
 *.pem
@@ -32,7 +29,6 @@ yarn-error.log*
 .vscode/*
 !.vscode/extensions.json
 .idea
-
 
 # Yarn files
 .pnp.*

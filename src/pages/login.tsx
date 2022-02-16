@@ -1,59 +1,59 @@
-import React, { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { FC, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import Layout from "../components/layout";
-import useAuth from "../utils/useAuth";
+import Layout from '../components/layout'
+import useAuth from '../utils/use-auth'
 
-import styles from "../styles/login.module.scss";
+import styles from '../styles/login.module.scss'
 
 export const Login: FC = () => {
-  const navigate = useNavigate();
-  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate()
+  const { login, isAuthenticated } = useAuth()
 
   const [fields, setFields] = useState<{ username: string; password: string }>({
-    username: "",
-    password: "",
-  });
+    username: '',
+    password: ''
+  })
 
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     if (isAuthenticated()) {
-      navigate("/");
+      navigate('/')
     }
-  });
+  })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
+    const { id, value } = event.target
 
     setFields((previousState) => ({
       ...previousState,
-      [id]: value,
-    }));
-  };
+      [id]: value
+    }))
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
-      await login(fields.username, fields.password);
+      await login(fields.username, fields.password)
 
-      setError("");
-      navigate("/");
+      setError('')
+      navigate('/')
     } catch (error) {
-      console.error(error);
+      console.error(error)
       // TODO: Check HTTP status before assuming it's a username-password problem
-      setError("Authentication failed");
+      setError('Authentication failed')
     }
-  };
+  }
 
   return (
     <Layout>
-      <div className={styles["container"]}>
-        <div className={styles["form-container"]}>
+      <div className={styles['container']}>
+        <div className={styles['form-container']}>
           <form onSubmit={handleSubmit}>
-            <span className={styles["title"]}>Login</span>
-            <div className={styles["floating-label"]}>
+            <span className={styles['title']}>Login</span>
+            <div className={styles['floating-label']}>
               <input
                 id="username"
                 name="username"
@@ -62,7 +62,7 @@ export const Login: FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className={styles["floating-label"]}>
+            <div className={styles['floating-label']}>
               <input
                 id="password"
                 name="password"
@@ -72,13 +72,13 @@ export const Login: FC = () => {
                 onChange={handleChange}
               />
             </div>
-            {error && <p className={styles["error"]}>{error}</p>}
+            {error && <p className={styles['error']}>{error}</p>}
             <button type="submit">Log in</button>
           </form>
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

@@ -1,18 +1,24 @@
-import type { Config } from "@jest/types";
+import type { Config } from '@jest/types'
+import { defaults as tsjPreset } from 'ts-jest/presets'
 
 const config: Config.InitialOptions = {
-  preset: "ts-jest",
+  preset: 'ts-jest',
   projects: [
     {
-      rootDir: "src",
-      testMatch: ["<rootDir>/__test__/*.tsx"],
-      displayName: { name: "Menmos-Web", color: "red" },
-      transform: {
-        "^.+\\.tsx?$": require.resolve("ts-jest"),
+      rootDir: '.',
+      testMatch: ['<rootDir>/tests/*.test.ts'],
+      displayName: { name: 'Menmos-Web', color: 'red' },
+      globals: {
+        'ts-jest': {
+          tsconfig: '<rootDir>/tsconfig.base.json'
+        }
       },
-      testEnvironment: "jsdom",
-    },
-  ],
-};
+      transform: {
+        ...tsjPreset.transform
+      },
+      testEnvironment: 'jsdom'
+    }
+  ]
+}
 
-export default config;
+export default config

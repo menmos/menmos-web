@@ -1,0 +1,35 @@
+name: Code Style
+on: [pull_request]
+jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Install Dependencies
+        run: |
+          yarn
+      - name: Run Prettier
+        run: |
+          yarn format
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Install Dependencies
+        run: |
+          yarn --immutable
+      - name: Run ESLint
+        run: |
+          yarn lint

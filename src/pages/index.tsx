@@ -1,21 +1,18 @@
-import ReactDOM from "react-dom";
-import {
-  unstable_HistoryRouter as HistoryRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
-import history from "../utils/history";
-import { Home } from "./home";
-import Login from "./login";
+import history from '../utils/history'
+import { Home } from './home'
+import Login from './login'
 
-import "../styles/globals.scss";
+import '../styles/globals.scss'
 
-config.autoAddCss = false;
+config.autoAddCss = false
 
-const app = document.getElementById("app");
+const app = document.querySelector('#app')
 ReactDOM.render(
   <HistoryRouter history={history}>
     <Routes>
@@ -23,8 +20,8 @@ ReactDOM.render(
         <Route
           path="*"
           element={
-            <main style={{ padding: "1rem" }}>
-              <p>There's nothing here!</p>
+            <main style={{ padding: '1rem' }}>
+              <p>There&apos;s nothing here!</p>
             </main>
           }
         />
@@ -33,4 +30,4 @@ ReactDOM.render(
     </Routes>
   </HistoryRouter>,
   app
-);
+)

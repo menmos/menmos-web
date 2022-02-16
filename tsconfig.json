@@ -15,7 +15,6 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
-    "types": [],
     "outDir": "build",
     "noEmit": true,
     "isolatedModules": true,
@@ -25,6 +24,5 @@
     "experimentalDecorators": true
   },
 
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"]
 }

@@ -1,16 +1,16 @@
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/router";
 
-import * as auth from "../utils/auth";
+import history from "../utils/history";
+import { getToken, logout } from "../utils/useAuth";
 
 // TODO: Throw exception when environment variable is undefined
 export const httpClient = axios.create({
-  baseURL: process.env["NEXT_PUBLIC_BASE_URL"],
+  baseURL: process.env["PUBLIC_URL"],
 });
 
 httpClient.interceptors.request.use(
   (config) => {
-    const token = auth.getToken();
+    const token = getToken();
     if (token) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -29,10 +29,8 @@ httpClient.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response?.status === 400) {
-      const router = useRouter();
-
-      auth.logout();
-      await router.push("/");
+      logout();
+      history.push("/");
     }
   }
 );

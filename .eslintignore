@@ -1,4 +1,2 @@
-.next
 node_modules
 jest.config.js
-next-env.d.ts

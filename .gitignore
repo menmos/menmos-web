@@ -2,15 +2,13 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# parcel
+.parcel-cache
+dist
 
 # production
 /build
@@ -30,10 +28,17 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
-
 # code editors
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+
+# Yarn files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -41,7 +41,7 @@ jobs:
       - run: git lfs pull --include .yarn/
 
       - name: Setup node
-      - uses: actions/setup-node@v2
+        uses: actions/setup-node@v2
         with:
           node-version: '16'
 

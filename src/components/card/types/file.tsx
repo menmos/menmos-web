@@ -17,7 +17,7 @@ export const FileCard: FC<Properties> = ({ blob, onLoad }) => {
   return (
     <div>
       <FontAwesomeIcon icon={faFile} size="10x" />
-      <span>{blob.meta.name}</span>
+      <span>{blob.meta.fields['name'] || blob.id}</span>
     </div>
   )
 }

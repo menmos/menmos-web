@@ -3,8 +3,7 @@ import mime from 'mime/lite'
 
 import styles from '../../styles/card.module.scss'
 
-import { Blob, BlobType } from '../../api/query'
-import { DirectoryCard } from './types/directory'
+import { Blob } from '../../api/query'
 import { ImageCard } from './types/images'
 import { PDFCard } from './types/pdf'
 import { FileCard } from './types/file'
@@ -15,11 +14,13 @@ export interface Properties {
 }
 
 const CardContent = (blob: Blob, onLoad: (() => void) | undefined) => {
-  const extension = mime.getType(blob.meta.name)
+  const extension = mime.getType(blob.meta.fields['extension'] || '')
 
-  if (blob.meta.blob_type == BlobType.Directory) {
-    return <DirectoryCard blob={blob} onLoad={onLoad} />
-  } else if (extension?.includes('image')) {
+  // FIXME: Disabling folder display for now
+  //if (blob.meta.blob_type == BlobType.Directory) {
+  //return <DirectoryCard blob={blob} onLoad={onLoad} />
+  //} else
+  if (extension?.includes('image')) {
     return <ImageCard blob={blob} onLoad={onLoad} />
   } else if (extension?.includes('pdf')) {
     return <PDFCard blob={blob} onLoad={onLoad} />

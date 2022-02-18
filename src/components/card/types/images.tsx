@@ -8,5 +8,5 @@ export interface Properties {
 }
 
 export const ImageCard: FC<Properties> = ({ blob, onLoad }) => {
-  return <img src={blob.url} alt={blob.meta.name} onLoad={onLoad} />
+  return <img src={blob.url} alt={blob.meta.fields['name'] || blob.id} onLoad={onLoad} />
 }

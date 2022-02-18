@@ -10,9 +10,7 @@
 # Inspired from https://gist.github.com/amacneil/60bf679f357bad9d62103cfdc86cbd74
 name: Dependabot
 on:
-  pull_request_target:
-    branches:
-      - 'master'
+  - pull_request_target
 
 jobs:
   fix-lockfile:

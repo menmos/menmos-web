@@ -1062,7 +1062,7 @@ __metadata:
     "@types/bricks.js": ^1.8.2
     "@types/jest": ^27.4.0
     "@types/mime": ^2.0.3
-    "@types/node": ^16
+    "@types/node": ^17
     "@types/react": ^17.0.39
     "@types/react-dom": ^17.0.11
     "@typescript-eslint/eslint-plugin": ^5.12.0
@@ -2034,10 +2034,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16":
-  version: 16.11.25
-  resolution: "@types/node@npm:16.11.25"
-  checksum: 0b6e25a81364be89256ad1a36341e27b387e646d3186e270108a8bb7b6ecdfdf5ae037aa1c75a5117b8a7509c80093b75431cd5cfcfbc4d553b52e7db2ca272e
+"@types/node@npm:^17":
+  version: 17.0.18
+  resolution: "@types/node@npm:17.0.18"
+  checksum: 6c4edfc2b3ba2342a9c3d56e934c5245948ab752f4dc04bd6790b9603e6ebc53bc4f5befc3662e207f7dba2ddd17ccf657f915e319ea7cdd4f77b851079d1611
   languageName: node
   linkType: hard
 

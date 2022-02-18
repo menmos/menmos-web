@@ -4,13 +4,12 @@ jobs:
   unit:
     name: Unit
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@master
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
           cache: 'yarn'
       - name: Fetch Node Packages
         run: |

@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import moment from 'moment'
 import { login } from '../api/auth'
 
 interface Token {
@@ -51,12 +50,12 @@ const useAuth = () => {
 
       const { expiry } = JSON.parse(authToken) as Token
 
-      return moment(expiry).isAfter(moment())
+      return new Date(expiry) > new Date()
     },
     async login(username: string, password: string): Promise<void> {
       const token = await login(username, password)
 
-      const expiry: string = moment().add(6, 'hours').toISOString()
+      const expiry = new Date().setHours(new Date().getHours() + 6)
       localStorage.setItem(TOKEN_KEY, JSON.stringify({ token, expiry }))
 
       localStorage.setItem(USERNAME_KEY, username)

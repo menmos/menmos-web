@@ -4,11 +4,8 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "allowJs": false,
-    "resolveJsonModule": true
+    "jsx": "react",
+    "allowJs": false
   },
 
   "include": ["src"]

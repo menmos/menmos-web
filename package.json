@@ -39,7 +39,7 @@
     "@jest/types": "^27.5.1",
     "@parcel/config-default": "^2.3.1",
     "@parcel/core": "^2.3.1",
-    "@parcel/resolver-default": "^2.3.1",
+    "@parcel/resolver-default": "^2.3.2",
     "@parcel/transformer-babel": "^2.3.1",
     "@parcel/transformer-css": "^2.3.1",
     "@parcel/transformer-html": "^2.3.1",

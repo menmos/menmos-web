@@ -7,8 +7,13 @@
   align-items: center;
   break-inside: avoid;
 
+  svg {
+    display: block;
+  }
+
   span {
-    margin: 1em;
+    display: block;
+    text-align: center;
   }
 
   img {

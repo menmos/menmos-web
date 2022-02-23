@@ -1,18 +1,10 @@
 import { httpClient } from './client'
 
-export enum BlobType {
-  File = 'File',
-  Directory = 'Directory'
-}
-
 export interface Blob {
   id: string
   meta: {
-    name: string
-    blob_type: BlobType
-    metadata: { [key: string]: string }
+    fields: { [key: string]: string }
     tags: Array<string>
-    parents: Array<string>
     size: number
     created_at: string
     modified_at: string

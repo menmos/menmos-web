@@ -802,7 +802,7 @@ __metadata:
     mime: ^3.0.0
     parcel: 2.3.2
     postcss: ^8.4.6
-    postcss-modules: ^4.3.0
+    postcss-modules: ^4.3.1
     prettier: ^2.5.1
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -6432,9 +6432,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "postcss-modules@npm:4.3.0"
+"postcss-modules@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "postcss-modules@npm:4.3.1"
   dependencies:
     generic-names: ^4.0.0
     icss-replace-symbols: ^1.1.0
@@ -6446,7 +6446,7 @@ __metadata:
     string-hash: ^1.1.1
   peerDependencies:
     postcss: ^8.0.0
-  checksum: a67f091a2b297c52ef2339c01e3828835da382677676d2dbfa55ad7a5ca46fc588f0857bc4444245b1c313bbafc8b6c66cb9b578f4ef15a47367ab1d5bb36c38
+  checksum: fa592183bb3d96c4aaf535e3b9b3bcfc54274cbb5b337616543c24ec68cd56675e9fd8aabf994e627513af628d090e43d2f1f4928ff6cdd4b9d3b1ba3fce4d42
   languageName: node
   linkType: hard
 

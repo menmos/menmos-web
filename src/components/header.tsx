@@ -4,7 +4,7 @@ import useAuth, { getUsername } from '../utils/use-auth'
 
 import Profile from './profile'
 
-import styles from '../styles/header.module.scss'
+import * as styles from '../styles/header.module.scss'
 
 export interface Properties {
   hide?: boolean

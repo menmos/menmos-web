@@ -1,16 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom'
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import history from '../utils/history'
 import { Home } from './home'
 import Login from './login'
 
 import '../styles/globals.scss'
-
-config.autoAddCss = false
 
 const app = document.querySelector('#app')
 ReactDOM.render(

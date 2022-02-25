@@ -6,7 +6,7 @@ import useAuth from '../utils/use-auth'
 import { debounce } from '../components/utils/debounce'
 import { Content } from '../components/content'
 
-import styles from '../styles/home.module.scss'
+import * as styles from '../styles/home.module.scss'
 
 export const Home: FC = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true)

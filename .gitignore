@@ -9,6 +9,7 @@
 # parcel
 .parcel-cache
 dist
+tsconfig.tsbuildinfo
 
 # misc
 .DS_Store

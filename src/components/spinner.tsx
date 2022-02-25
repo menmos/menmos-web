@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import styles from '../styles/spinner.module.scss'
+import * as styles from '../styles/spinner.module.scss'
 
 const Spinner: FC = () => {
   return (

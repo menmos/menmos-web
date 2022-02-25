@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import mime from 'mime/lite'
 
-import styles from '../../styles/card.module.scss'
+import * as styles from '../../styles/card.module.scss'
 
 import { Blob } from '../../api/query'
 import { ImageCard } from './types/images'

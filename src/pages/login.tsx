@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Box, Button, TextField } from '@mui/material'
 
 import Layout from '../components/layout'
-import useAuth from '../utils/use-auth'
+import useAuth from '../components/utils/use-auth'
 
 import * as styles from '../styles/login.module.scss'
 
@@ -51,30 +52,37 @@ export const Login: FC = () => {
     <Layout>
       <div className={styles['container']}>
         <div className={styles['form-container']}>
-          <form onSubmit={handleSubmit}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <span className={styles['title']}>Login</span>
-            <div className={styles['floating-label']}>
-              <input
-                id="username"
-                name="username"
-                placeholder="Username"
-                value={fields.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles['floating-label']}>
-              <input
-                id="password"
-                name="password"
-                placeholder="Password"
-                type="password"
-                value={fields.password}
-                onChange={handleChange}
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              variant="standard"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              value={fields.username}
+              onChange={handleChange}
+            />
+            <TextField
+              fullWidth
+              margin="normal"
+              variant="standard"
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={fields.password}
+              onChange={handleChange}
+            />
+
             {error && <p className={styles['error']}>{error}</p>}
-            <button type="submit">Log in</button>
-          </form>
+            <Button color="secondary" variant="contained" type="submit">
+              Log in
+            </Button>
+          </Box>
         </div>
       </div>
     </Layout>

@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Layout from '../components/layout'
-import useAuth from '../utils/use-auth'
+import useAuth from '../components/utils/use-auth'
 import { debounce } from '../components/utils/debounce'
 import { Content } from '../components/content'
 
@@ -25,7 +25,7 @@ export const Home: FC = (): JSX.Element => {
     }
 
     setIsLoading(false)
-    setSearch('') // Empty search by default, returns everything.
+    setSearch('')
   }, [isLoading, isAuthenticated, navigate])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

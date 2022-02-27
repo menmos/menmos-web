@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { login } from '../api/auth'
+import { login } from '../../api/auth'
 
 interface Token {
   token: string

@@ -23,18 +23,18 @@ export const Content: FC<Properties> = ({ search }): JSX.Element => {
       return
     }
 
-    await query(search, { from, size })
-      .then((data) => {
-        if (data.count > 0) {
-          setBlobs((previousBlobs) => [...previousBlobs, ...data.hits])
-          setTotal(data.total)
-          setPage((previousPage) => previousPage + 1)
-        }
-      })
-      .catch(() => {
-        // TODO: Handle errors
-      })
-  }, [page, total, search, nbLoaded, blobs.length])
+    try {
+      const results = await query(search, { from, size })
+
+      if (results.count > 0) {
+        setBlobs((previousBlobs) => [...previousBlobs, ...results.hits])
+        setTotal(results.total)
+        setPage((previousPage) => previousPage + 1)
+      }
+    } catch (error) {
+      console.error('An error occurred while running the query', error)
+    }
+  }, [page, total, search, blobs.length, nbLoaded])
 
   const onload = useCallback(() => {
     setNbLoaded((previous) => previous + 1)
@@ -51,7 +51,7 @@ export const Content: FC<Properties> = ({ search }): JSX.Element => {
     if (total === 0 && page === 0 && blobs.length === 0 && nbLoaded === 0 && search) {
       void loadMore()
     }
-  }, [total, page, blobs, nbLoaded, search, loadMore])
+  }, [page, total, search, blobs.length, nbLoaded, loadMore])
 
   return (
     <section>

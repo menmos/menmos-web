@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../components/layout'
 import useAuth from '../utils/use-auth'
 
-import styles from '../styles/login.module.scss'
+import * as styles from '../styles/login.module.scss'
 
 export const Login: FC = () => {
   const navigate = useNavigate()

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { logout } from '../utils/use-auth'
 
-import styles from '../styles/profile.module.scss'
+import * as styles from '../styles/profile.module.scss'
 
 type Properties = {
   username: string

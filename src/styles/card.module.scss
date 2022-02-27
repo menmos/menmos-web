@@ -5,15 +5,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  break-inside: avoid;
 
   svg {
     display: block;
+    margin: auto;
   }
 
   span {
     display: block;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 300px;
   }
 
   img {

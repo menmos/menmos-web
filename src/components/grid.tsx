@@ -5,7 +5,6 @@ import { usePrevious } from './utils/use-previous'
 
 export interface Properties {
   children: React.ReactChild[]
-  sizes?: Bricks.SizeDetail[]
   loadMore?: () => void
   hasLoaded: boolean
 }
@@ -39,12 +38,7 @@ const generateBreakpoints = ({
   return breakpoints
 }
 
-export const Grid = ({
-  children,
-  hasLoaded,
-  sizes = generateBreakpoints({ count: 20, itemSize: 300, gutter: 20 }),
-  loadMore
-}: Properties) => {
+export const Grid = ({ children, hasLoaded, loadMore }: Properties) => {
   const previousChildrenLength = usePrevious<number>(children.length)
   const container = useRef<HTMLDivElement>(null)
   const [instance, setInstance] = useState<Bricks.Instance | undefined>()
@@ -52,10 +46,10 @@ export const Grid = ({
   // Semi-hack to make sure we pack everything once the images and videos are loaded
   // It ensures that the grid computations will be done on fully rendered content
   useEffect(() => {
-    if (hasLoaded) {
-      instance?.pack()
+    if (hasLoaded && instance) {
+      instance.pack()
     }
-  }, [hasLoaded, instance])
+  }, [instance, hasLoaded])
 
   useEffect(() => {
     if (!container.current) {
@@ -65,7 +59,7 @@ export const Grid = ({
     const instance = Bricks({
       container: container.current,
       packed: 'data-packed',
-      sizes,
+      sizes: generateBreakpoints({ count: 20, itemSize: 300, gutter: 20 }),
       position: true
     })
 
@@ -73,7 +67,7 @@ export const Grid = ({
     instance.pack()
 
     setInstance(instance)
-  }, [sizes])
+  }, [])
 
   useEffect(() => {
     if ((previousChildrenLength === 0 && children.length === 0) || !instance) {
@@ -82,10 +76,8 @@ export const Grid = ({
 
     if (children.length > previousChildrenLength) {
       instance.update()
-    } else {
-      instance.pack()
     }
-  }, [children, instance, previousChildrenLength])
+  }, [children.length, instance, previousChildrenLength])
 
   if (children.length === 0) {
     // eslint-disable-next-line unicorn/no-null
@@ -93,7 +85,7 @@ export const Grid = ({
   }
 
   return (
-    <InfiniteScroll callback={loadMore}>
+    <InfiniteScroll callback={hasLoaded ? loadMore : undefined}>
       <div ref={container}>{children}</div>
     </InfiniteScroll>
   )

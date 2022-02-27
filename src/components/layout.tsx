@@ -2,7 +2,7 @@ import Header from './header'
 import Footer from './footer'
 import React, { FC } from 'react'
 
-import styles from '../styles/layout.module.scss'
+import * as styles from '../styles/layout.module.scss'
 import { ComponentProperties, Components, getComponents } from './utils/get-components'
 
 const defaultComponents = {

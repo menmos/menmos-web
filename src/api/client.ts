@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
 import history from '../utils/history'
-import { getToken, logout } from '../utils/use-auth'
+import { getToken, logout } from '../components/utils/use-auth'
 
 // TODO: Throw exception when environment variable is undefined
 export const httpClient = axios.create({

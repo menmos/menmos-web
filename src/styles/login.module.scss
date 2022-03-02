@@ -56,30 +56,4 @@
       }
     }
   }
-
-  .floating-label {
-    position: relative;
-    margin-bottom: 10px;
-    width: 100%;
-
-    input {
-      width: 100%;
-      display: flex;
-      font-size: 16px;
-      padding: 20px 0;
-      height: 56px;
-      border: none;
-      border-bottom: solid 1px rgb(0 0 0 / 1%);
-      background: #fff;
-      box-sizing: border-box;
-      transition: all 0.3s linear;
-      color: #000;
-
-      &:focus {
-        border-bottom: solid 1px $primary;
-        outline: 0;
-        box-shadow: 0 2px 6px -8px rgba($primary, 0.45);
-      }
-    }
-  }
 }

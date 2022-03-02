@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
 
 import { Grid } from './grid'
-import { query, DEFAULT_PARAMS, Blob } from '../api/query'
+import { Blob, DEFAULT_PARAMS, query } from '../api/query'
 import { Card } from './card/card'
 
 interface Properties {

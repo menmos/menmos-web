@@ -33,10 +33,10 @@ export const Card: FC<Properties> = (properties): JSX.Element => {
   const { blob, onLoad } = properties
 
   return (
-    // TODO: Use an <a> tag instead of a <div> here
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
-    <div className={styles['card']} onClick={() => window?.open(blob.url, '_blank')?.focus()} role={'img'}>
-      {CardContent(blob, onLoad)}
+    <div className={styles['card']} role={'img'}>
+      <a href={blob.url} target="_blank" rel="noreferrer">
+        {CardContent(blob, onLoad)}
+      </a>
     </div>
   )
 }

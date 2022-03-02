@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import useAuth, { getUsername } from '../utils/use-auth'
+import useAuth, { getUsername } from './utils/use-auth'
 
 import Profile from './profile'
 

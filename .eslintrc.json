@@ -27,9 +27,9 @@
       "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:jsx-a11y/recommended"]
     },
     {
-      "files": ["**/tests/**/*.test.ts(x)"],
-      "plugins": ["jest"],
-      "extends": ["plugin:jest/recommended"]
+      "files": ["**/*.spec.ts(x)"],
+      "plugins": ["cypress"],
+      "extends": ["plugin:cypress/recommended"]
     }
   ]
 }

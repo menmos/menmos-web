@@ -79,7 +79,7 @@ export const Login: FC = () => {
             />
 
             {error && <p className={styles['error']}>{error}</p>}
-            <Button color="secondary" variant="contained" type="submit">
+            <Button id="btn-login" color="secondary" variant="contained" type="submit">
               Log in
             </Button>
           </Box>

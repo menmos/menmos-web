@@ -1,0 +1,8 @@
+[server]
+type = "http"
+port = 3030
+
+[node]
+admin_password = "admin" # The password of the cluster admin user.
+encryption_key = "2h4jsh45j34jk321e0je4krjwelkrjwe" # The encryption key *must* be exactly 32 characters long.
+db_path = "/tmp/directory_db"

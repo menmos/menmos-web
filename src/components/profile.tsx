@@ -35,7 +35,7 @@ const Profile: FC<Properties> = (properties) => {
   }
 
   return (
-    <div className={styles['profile']}>
+    <div className={styles['profile']} id="profile-menu">
       <Box>
         <IconButton onClick={handleClick} size="small">
           <Avatar sx={{ bgcolor: lightGreen['A400'] }}>{properties.username.charAt(0).toUpperCase()}</Avatar>
@@ -71,7 +71,7 @@ const Profile: FC<Properties> = (properties) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={onLogout}>
+        <MenuItem onClick={onLogout} id="logout">
           <ListItemIcon>
             <FontAwesomeIcon icon={faArrowRightFromBracket} size="sm" />
           </ListItemIcon>

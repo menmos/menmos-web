@@ -7,7 +7,7 @@ describe('Search', () => {
     cy.visit('/')
   })
 
-  it('Should search for blobs with a given tag', () => {
+  it('Should search for blobs with a given tag', async () => {
     cy.get('#search').type('images')
 
     cy.intercept('POST', 'http://localhost:3030/query', {
@@ -126,6 +126,11 @@ describe('Search', () => {
     }).as('search')
 
     cy.wait('@search')
+
+    // Wait 2 sec for the blobs to display
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000)
+    })
 
     cy.compareSnapshot('search')
   })

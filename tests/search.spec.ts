@@ -132,6 +132,6 @@ describe('Search', () => {
       setTimeout(resolve, 2000)
     })
 
-    cy.compareSnapshot('search')
+    cy.compareSnapshot('search', 0.08)
   })
 })

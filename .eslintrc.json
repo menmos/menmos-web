@@ -5,7 +5,7 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["*.js", "**/dist/**"],
+  "ignorePatterns": ["*.js", "**/dist/**", "*.d.ts"],
   "overrides": [
     {
       "files": ["**/*.{ts,tsx}"],

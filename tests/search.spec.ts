@@ -129,9 +129,9 @@ describe('Search', () => {
 
     // Wait 2 sec for the blobs to display
     await new Promise((resolve) => {
-      setTimeout(resolve, 2000)
+      setTimeout(resolve, 3000)
     })
 
-    cy.compareSnapshot('search', 0.08)
+    cy.compareSnapshot('search', 0.1)
   })
 })

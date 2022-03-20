@@ -1,6 +1,6 @@
 describe('Login', () => {
   it('Should go to the login page automatically', () => {
-    cy.visit('/')
+    cy.visit('/web')
 
     cy.url().should('include', '/login')
   })

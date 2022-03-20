@@ -16,10 +16,11 @@ const app = document.querySelector('#app')
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <HistoryRouter history={history}>
+    <HistoryRouter history={history} basename="/web">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<p>Not found</p>} />
       </Routes>
     </HistoryRouter>
   </ThemeProvider>,

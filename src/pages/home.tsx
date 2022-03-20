@@ -21,7 +21,7 @@ export const Home: FC = (): JSX.Element => {
     }
 
     if (!isAuthenticated()) {
-      navigate('/login')
+      navigate('login')
     }
 
     setIsLoading(false)

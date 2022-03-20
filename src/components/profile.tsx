@@ -31,7 +31,7 @@ const Profile: FC<Properties> = (properties) => {
 
   const onLogout = () => {
     logout()
-    navigate('/login')
+    navigate('login')
   }
 
   return (

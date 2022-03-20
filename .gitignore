@@ -39,3 +39,9 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+cypress-visual-screenshots/comparison
+cypress-visual-screenshots/diff
+cypress-visual-report
+cypress/videos
+cypress/fixtures

@@ -45,7 +45,7 @@ export const Home: FC = (): JSX.Element => {
               props: {
                 children: (
                   <>
-                    <div className={styles['search']}>
+                    <div className={styles['search']} id="search">
                       <input onChange={(event) => onSearch(event.target.value)} placeholder={'Search...'} required />
                     </div>
                   </>

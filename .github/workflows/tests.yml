@@ -1,9 +1,12 @@
 name: Tests
 on: [pull_request]
 jobs:
-  unit:
-    name: Unit
+  e2e:
+    name: E2E
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: ['chrome', 'firefox']
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -14,6 +17,10 @@ jobs:
       - name: Fetch Node Packages
         run: |
           yarn --immutable
+      - name: Display info
+        run: |
+          yarn run cypress info
       - name: Run tests
         run: |
-          yarn test --coverage --verbose
+          yarn serve & 
+          yarn cypress:run --browser ${{ matrix.browser }}

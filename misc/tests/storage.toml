@@ -1,0 +1,18 @@
+# The URL and port of the menmosd instance you want this amphora to join
+[directory]
+url = "http://menmosd" # The scheme (http v. https) is significant here, be sure to specify it
+port = 3030
+
+[node]
+name = "alpha" # The name of this amphora - should be unique within a cluster
+encryption_key = "2h4jsh45j34jk321e0je4krjwelkrjwe" # Should match the key set on the menmosd server - it's the only way both servers can trust each other
+db_path = "/tmp/storage_db"
+
+# Specify the storage backend for this amphora.
+# Currently, only "Directory" and "S3" are available.
+[node.blob_storage]
+type = "Directory"
+path = "/tmp/blobs"
+
+[server]
+port = 3031 # The port this amphora will be listening on

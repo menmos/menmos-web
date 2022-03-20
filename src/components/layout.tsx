@@ -21,7 +21,11 @@ type Properties = {
   overrides?: ComponentProperties<Components, ComponentNames>
 }
 
-const Content: FC = (properties) => <div className={styles['content']}>{properties.children}</div>
+const Content: FC = (properties) => (
+  <div className={styles['content']} id="content">
+    {properties.children}
+  </div>
+)
 
 const Layout: FC<Properties> = (properties) => {
   const {

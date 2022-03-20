@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  amphora:
+    image: menmos/amphora
+    container_name: amphora
+    network_mode: host
+    volumes:
+      - ./storage.toml:/app/config.toml
+    command: --cfg config.toml
+
+  menmosd:
+    image: menmos/menmosd
+    container_name: menmosd
+    network_mode: host
+    volumes:
+      - ./directory.toml:/app/config.toml
+    command: --cfg config.toml

@@ -14,7 +14,7 @@ describe('Search', () => {
     cy.get('#logout').click()
 
     cy.url().should('include', '/login')
-    cy.visit('/')
+    cy.visit('/web')
     cy.url().should('include', '/login')
   })
 })

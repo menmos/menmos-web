@@ -413,49 +413,49 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-common-types@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@fortawesome/fontawesome-common-types@npm:0.3.0"
-  checksum: f08280e2e6c7df5cf2c80c88092828b367bb824ec21a6ba0e5d290ebf86038de166622152c8845a0aeaeff70bd54df7af17f1ef26dea7b832fdebdcc37412c37
+"@fortawesome/fontawesome-common-types@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.1.0"
+  checksum: 09c6b6ff0b24b1950cf44e821f25ccc9cedcce97e7c969c0fbb4410cccdc0742ea44931d4240648eb2080360bb0fdb470c42d3d429d453d31810fd65f056e03c
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@fortawesome/fontawesome-svg-core@npm:1.3.0"
+"@fortawesome/fontawesome-svg-core@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.1.0"
   dependencies:
-    "@fortawesome/fontawesome-common-types": ^0.3.0
-  checksum: 78be521be3aac56cf81695c5f3fefda8a0e0dcbd37cd734f09b74a3657dd9c073cb86c5adf60a4904e584936fe9a63ee913d932c03105092bd8c44bb92f3aad6
+    "@fortawesome/fontawesome-common-types": 6.1.0
+  checksum: cc901fb1ee6eed391a1771dcb565e9176892ce5b7c19bf172b5761936e70d581ef253caf5b99da0c34c8b7dc9a6e481ee6b4365a3796cf2ebffc82acf0f7e275
   languageName: node
   linkType: hard
 
-"@fortawesome/free-regular-svg-icons@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@fortawesome/free-regular-svg-icons@npm:6.0.0"
+"@fortawesome/free-regular-svg-icons@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "@fortawesome/free-regular-svg-icons@npm:6.1.0"
   dependencies:
-    "@fortawesome/fontawesome-common-types": ^0.3.0
-  checksum: a1e25cdf58051f63d7254dd165b97381c9fbdedcccd0079aa83f0400cf37b74a980f8a6f8870d7cd462063bc718d505389087837af3439877a200a02f9b2ff0f
+    "@fortawesome/fontawesome-common-types": 6.1.0
+  checksum: f44ec3101e2c5cac72309147e42a6c6152de96b5bdee1f51119f2fd57d43094464fecbac8fcb7dac7a47fcee3d3c2203fb514e6fdd1395a61c367ed3c86e7d2b
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@fortawesome/free-solid-svg-icons@npm:6.0.0"
+"@fortawesome/free-solid-svg-icons@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.1.0"
   dependencies:
-    "@fortawesome/fontawesome-common-types": ^0.3.0
-  checksum: af00e4245e20283f74c37e3c44a247d086ef54cd57e8e0b26178e82d4f400514e405dff6e6d0fd67d50be873180e41c5347f1baaee7a6506228f88390204064a
+    "@fortawesome/fontawesome-common-types": 6.1.0
+  checksum: 41f762459d95388c1fdbd205493ff3750df8d3f6f937b1a51aaadaa62abbd563953168c04c9eb8a3628cec96271e2941be9ba5e214cc770e44dd0700f5649299
   languageName: node
   linkType: hard
 
-"@fortawesome/react-fontawesome@npm:^0.1.17":
-  version: 0.1.17
-  resolution: "@fortawesome/react-fontawesome@npm:0.1.17"
+"@fortawesome/react-fontawesome@npm:^0.1.18":
+  version: 0.1.18
+  resolution: "@fortawesome/react-fontawesome@npm:0.1.18"
   dependencies:
     prop-types: ^15.8.1
   peerDependencies:
-    "@fortawesome/fontawesome-svg-core": ~1 || >=1.3.0-beta1
+    "@fortawesome/fontawesome-svg-core": ~1 || ~6
     react: ">=16.x"
-  checksum: a95a9ef1783e93312c153b299c084043eed4d0867a5ab90019c817c3b4d845052b6539524ca0daee828bbb8f102637fbf8c36e5759cf3f11cdd99a904623abb2
+  checksum: eba711234541928e1877435905bcd94ab6aea1cf228833a55fc7c6a2fc18dd08d3f7f327ca4af0f3ba365188ad0869d7ecd31be5940d27f4e2bbe7e12cbcf520
   languageName: node
   linkType: hard
 
@@ -490,10 +490,10 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.8.2
     "@emotion/styled": ^11.8.1
-    "@fortawesome/fontawesome-svg-core": ^1.3.0
-    "@fortawesome/free-regular-svg-icons": ^6.0.0
-    "@fortawesome/free-solid-svg-icons": ^6.0.0
-    "@fortawesome/react-fontawesome": ^0.1.17
+    "@fortawesome/fontawesome-svg-core": ^6.1.0
+    "@fortawesome/free-regular-svg-icons": ^6.1.0
+    "@fortawesome/free-solid-svg-icons": ^6.1.0
+    "@fortawesome/react-fontawesome": ^0.1.18
     "@mui/material": ^5.5.1
     "@mui/styled-engine-sc": ^5.4.2
     "@parcel/config-default": ^2.3.2
@@ -527,14 +527,13 @@ __metadata:
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.29.4
     eslint-plugin-react-hooks: ^4.3.0
-    eslint-plugin-unicorn: ^41.0.0
+    eslint-plugin-unicorn: ^41.0.1
     history: ^5.3.0
     mime: ^3.0.0
-    nock: ^13.2.4
     parcel: 2.3.2
-    postcss: ^8.4.8
+    postcss: ^8.4.11
     postcss-modules: ^4.3.1
-    prettier: ^2.5.1
+    prettier: ^2.6.0
     react: ^17.0.2
     react-dom: ^17.0.2
     react-router-dom: ^6.2.2
@@ -542,10 +541,10 @@ __metadata:
     sass: ^1.49.9
     source-map-support: ^0.5.21
     styled-components: ^5.3.3
-    stylelint: ^14.5.3
+    stylelint: ^14.6.0
     stylelint-config-prettier: ^9.0.3
     stylelint-config-standard: ^25.0.0
-    stylelint-scss: ^4.1.0
+    stylelint-scss: ^4.2.0
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
@@ -3318,9 +3317,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-unicorn@npm:^41.0.0":
-  version: 41.0.0
-  resolution: "eslint-plugin-unicorn@npm:41.0.0"
+"eslint-plugin-unicorn@npm:^41.0.1":
+  version: 41.0.1
+  resolution: "eslint-plugin-unicorn@npm:41.0.1"
   dependencies:
     "@babel/helper-validator-identifier": ^7.15.7
     ci-info: ^3.3.0
@@ -3338,7 +3337,7 @@ __metadata:
     strip-indent: ^3.0.0
   peerDependencies:
     eslint: ">=8.8.0"
-  checksum: 661d572b244f9f61121806cb0b9b4914f37e978089633e8b401d95b736f5acb9ed70f398de9cebcdbb1456961e7360c2b196483a793f6f1613c2a4989a298488
+  checksum: 90c9dd93b57ec2cdd650168364b4e2220e2c72c1ffc8ea43cd1be2dabadc7821ec5077656f44fa4622e284caa39ca497058e1dbe609f530d392bdb2da3d73b70
   languageName: node
   linkType: hard
 
@@ -4660,7 +4659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-stringify-safe@npm:^5.0.1, json-stringify-safe@npm:~5.0.1":
+"json-stringify-safe@npm:~5.0.1":
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 48ec0adad5280b8a96bb93f4563aa1667fd7a36334f79149abd42446d0989f2ddc58274b479f4819f1f00617957e6344c886c55d05a4e15ebb4ab931e4a6a8ee
@@ -4857,13 +4856,6 @@ __metadata:
   version: 4.1.1
   resolution: "lodash.once@npm:4.1.1"
   checksum: d768fa9f9b4e1dc6453be99b753906f58990e0c45e7b2ca5a3b40a33111e5d17f6edf2f768786e2716af90a8e78f8f91431ab8435f761fef00f9b0c256f6d245
-  languageName: node
-  linkType: hard
-
-"lodash.set@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "lodash.set@npm:4.3.2"
-  checksum: a9122f49eef9f2d0fc9061a33d87f8e5b8c6b23d46e8b9e9ce1529d3588d79741bd1145a3abdfa3b13082703e65af27ff18d8a07bfc22b9be32f3fc36f763f70
   languageName: node
   linkType: hard
 
@@ -5260,18 +5252,6 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: deac9f8d00eda7b2e5cd1b2549e26e10a0faa70adaa6fdadca701cc55f49ee9018e427f424bac0c790b7c7e2d3068db97f3093f1093975f2acb8f8818b936ed9
-  languageName: node
-  linkType: hard
-
-"nock@npm:^13.2.4":
-  version: 13.2.4
-  resolution: "nock@npm:13.2.4"
-  dependencies:
-    debug: ^4.1.0
-    json-stringify-safe: ^5.0.1
-    lodash.set: ^4.3.2
-    propagate: ^2.0.0
-  checksum: 2750a82ea22eebd8203eb1d7669ae09c3daae1fd573026372bad2515adad48d723a804f647bd45d7a499eb3a9a632560da406bde05bca9df762d3027db9099b5
   languageName: node
   linkType: hard
 
@@ -6124,14 +6104,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.5, postcss@npm:^8.4.6, postcss@npm:^8.4.8":
-  version: 8.4.8
-  resolution: "postcss@npm:8.4.8"
+"postcss@npm:^8.4.11, postcss@npm:^8.4.12, postcss@npm:^8.4.5":
+  version: 8.4.12
+  resolution: "postcss@npm:8.4.12"
   dependencies:
     nanoid: ^3.3.1
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: 8e42def1ea98a4ac800d2b8937b19c83c6722da6c39ded72b1877eb743922f51b6e93be3667284b685ac18e8b583f21d97f24e0a73161c70fe8dc6901e614b87
+  checksum: 248e3d0f9bbb8efaafcfda7f91627a29bdc9a19f456896886330beb28c5abea0e14c7901b35191928602e2eccbed496b1e94097d27a0b2a980854cd00c7a835f
   languageName: node
   linkType: hard
 
@@ -6179,12 +6159,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.5.1":
-  version: 2.5.1
-  resolution: "prettier@npm:2.5.1"
+"prettier@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "prettier@npm:2.6.0"
   bin:
     prettier: bin-prettier.js
-  checksum: 21b9408476ea1c544b0e45d51ceb94a84789ff92095abb710942d780c862d0daebdb29972d47f6b4d0f7ebbfb0ffbf56cc2cfa3e3e9d1cca54864af185b15b66
+  checksum: 3e527ad62279676778a8404d18174d7ca2365ada4caba6eebbcdd9907d1187afd3bc6ade5b4e5f5d4549bb9fb71e45ca8930d71500017635524f8fc05bc52e93
   languageName: node
   linkType: hard
 
@@ -6220,13 +6200,6 @@ __metadata:
     object-assign: ^4.1.1
     react-is: ^16.13.1
   checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
-  languageName: node
-  linkType: hard
-
-"propagate@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "propagate@npm:2.0.1"
-  checksum: c4febaee2be0979e82fb6b3727878fd122a98d64a7fa3c9d09b0576751b88514a9e9275b1b92e76b364d488f508e223bd7e1dcdc616be4cdda876072fbc2a96c
   languageName: node
   linkType: hard
 
@@ -7060,9 +7033,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-scss@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "stylelint-scss@npm:4.1.0"
+"stylelint-scss@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "stylelint-scss@npm:4.2.0"
   dependencies:
     lodash: ^4.17.21
     postcss-media-query-parser: ^0.2.3
@@ -7070,14 +7043,14 @@ __metadata:
     postcss-selector-parser: ^6.0.6
     postcss-value-parser: ^4.1.0
   peerDependencies:
-    stylelint: ^14.0.0
-  checksum: 9dde9ecc6b1306530307a389f22b098df368bc6453eb09095b1f06a31d5395545d4171d842bc2c3996bb006c8977f5629076ff985c140548db4cbb794c15a780
+    stylelint: ^14.5.1
+  checksum: 1fb9e850fc7301c3481f7df193d9dda520a0d54a56284ffda2de5766432aebd4205daa5c3002e784548ba26d5d1dee402c162bbb46beb6377a40d75abc409a3d
   languageName: node
   linkType: hard
 
-"stylelint@npm:^14.5.3":
-  version: 14.5.3
-  resolution: "stylelint@npm:14.5.3"
+"stylelint@npm:^14.6.0":
+  version: 14.6.0
+  resolution: "stylelint@npm:14.6.0"
   dependencies:
     balanced-match: ^2.0.0
     colord: ^2.9.2
@@ -7104,7 +7077,7 @@ __metadata:
     normalize-path: ^3.0.0
     normalize-selector: ^0.2.0
     picocolors: ^1.0.0
-    postcss: ^8.4.6
+    postcss: ^8.4.12
     postcss-media-query-parser: ^0.2.3
     postcss-resolve-nested-selector: ^0.1.1
     postcss-safe-parser: ^6.0.0
@@ -7122,7 +7095,7 @@ __metadata:
     write-file-atomic: ^4.0.1
   bin:
     stylelint: bin/stylelint.js
-  checksum: 5fadb61263e003fe791d6c8a31c48825e015a5fee909b0a484baad8d4a46622425409f18d2734a01e91405c825a5b3ccad943ed2298cd4f7df4a0a605c4d0292
+  checksum: cb28abd153b0edea03ad0133bc9be789a315f9138e7254f5da372677cef67954da081cffb696a59fee7958d3d3781566acb9e8ab99e453fe4398ef91f0495378
   languageName: node
   linkType: hard
 

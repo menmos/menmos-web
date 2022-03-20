@@ -545,13 +545,7 @@ __metadata:
     stylelint-config-prettier: ^9.0.3
     stylelint-config-standard: ^25.0.0
     stylelint-scss: ^4.2.0
-<<<<<<< HEAD
-    ts-jest: ^27.1.3
-    ts-node: ^10.7.0
     typescript: ^4.6.2
-=======
-    typescript: ^4.5.5
->>>>>>> 9cc9af5d1a57ee7aebc566d9e4e91078ae4bd207
   languageName: unknown
   linkType: soft
 
@@ -7380,24 +7374,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"typedarray-to-buffer@npm:^3.1.5":
-  version: 3.1.5
-  resolution: "typedarray-to-buffer@npm:3.1.5"
-  dependencies:
-    is-typedarray: ^1.0.0
-  checksum: 99c11aaa8f45189fcfba6b8a4825fd684a321caa9bd7a76a27cf0c7732c174d198b99f449c52c3818107430b5f41c0ccbbfb75cb2ee3ca4a9451710986d61a60
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^4.6.2":
   version: 4.6.2
   resolution: "typescript@npm:4.6.2"
-=======
-"typescript@npm:^4.5.5":
-  version: 4.5.5
-  resolution: "typescript@npm:4.5.5"
->>>>>>> 9cc9af5d1a57ee7aebc566d9e4e91078ae4bd207
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver

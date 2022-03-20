@@ -4,7 +4,7 @@ describe('Search', () => {
   it('Should log in programmatically without using the UI', () => {
     login()
 
-    cy.visit('/')
+    cy.visit('/web')
   })
 
   it('Should search for blobs with a given tag', async () => {

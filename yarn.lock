@@ -495,7 +495,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.1.0
     "@fortawesome/react-fontawesome": ^0.1.18
     "@mui/material": ^5.5.2
-    "@mui/styled-engine-sc": ^5.4.2
+    "@mui/styled-engine-sc": ^5.5.2
     "@parcel/config-default": ^2.3.2
     "@parcel/core": ^2.3.2
     "@parcel/resolver-default": ^2.3.2
@@ -621,9 +621,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/styled-engine-sc@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "@mui/styled-engine-sc@npm:5.4.2"
+"@mui/styled-engine-sc@npm:^5.5.2":
+  version: 5.5.2
+  resolution: "@mui/styled-engine-sc@npm:5.5.2"
   dependencies:
     prop-types: ^15.7.2
   peerDependencies:
@@ -632,7 +632,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/styled-components":
       optional: true
-  checksum: 5d2b8ae8636b2d81a30323d21baf461fca7995adceb64072621ff421cd820b25451c96c7de4d330db0fa9cb5800e4e460b6265b80869164bf51d028c813c4f8f
+  checksum: c4d10f589655f37f56d05c99cb012ce7f44c467c808ae7173a5904a6f3080c9867dba77353e8e2ca85447cfc1fefe105345a9dae9a066fb13412688609a7da99
   languageName: node
   linkType: hard
 

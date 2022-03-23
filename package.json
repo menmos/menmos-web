@@ -54,7 +54,7 @@
     "@parcel/transformer-postcss": "^2.3.2",
     "@parcel/transformer-posthtml": "^2.3.2",
     "@parcel/transformer-react-refresh-wrap": "^2.3.2",
-    "@parcel/transformer-sass": "^2.3.2",
+    "@parcel/transformer-sass": "^2.4.0",
     "@parcel/transformer-typescript-tsc": "^2.3.2",
     "@types/bricks.js": "^1.8.2",
     "@types/mime": "^2.0.3",

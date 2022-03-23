@@ -6,9 +6,10 @@ import { Card } from './card/card'
 
 interface Properties {
   search: string
+  onError?: () => void
 }
 
-export const Content: FC<Properties> = ({ search }): JSX.Element => {
+export const Content: FC<Properties> = ({ search, onError }): JSX.Element => {
   const [blobs, setBlobs] = useState<Blob[]>([])
   const [total, setTotal] = useState<number>(0)
   const [page, setPage] = useState<number>(0)
@@ -33,8 +34,10 @@ export const Content: FC<Properties> = ({ search }): JSX.Element => {
       }
     } catch (error) {
       console.error('An error occurred while running the query', error)
+
+      onError?.()
     }
-  }, [page, total, search, blobs.length, nbLoaded])
+  }, [page, total, search, blobs.length, nbLoaded, onError])
 
   const onload = useCallback(() => {
     setNbLoaded((previous) => previous + 1)

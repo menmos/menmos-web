@@ -44,7 +44,7 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.3.2",
+    "@parcel/config-default": "^2.4.0",
     "@parcel/core": "^2.3.2",
     "@parcel/resolver-default": "^2.3.2",
     "@parcel/transformer-babel": "^2.3.2",

@@ -45,3 +45,4 @@ cypress-visual-screenshots/diff
 cypress-visual-report
 cypress/videos
 cypress/fixtures
+cypress/screenshots

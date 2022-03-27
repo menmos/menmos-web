@@ -11,9 +11,12 @@ import * as styles from '../styles/home.module.scss'
 export const Home: FC = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [search, setSearch] = useState<string>('')
+  const [value, setValue] = useState<string>('')
+  const [hasError, setHasError] = useState<boolean>(false)
 
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
+  const searchParameterName = 'query'
 
   useEffect(() => {
     if (!isLoading) {
@@ -24,17 +27,42 @@ export const Home: FC = (): JSX.Element => {
       navigate('login')
     }
 
+    const searchParameters = new URLSearchParams(window.location.search)
+    const query = searchParameters.get(searchParameterName)
+
     setIsLoading(false)
-    setSearch('')
+    setHasError(false)
+
+    if (query) {
+      const parsedQuery = decodeURIComponent(query)
+
+      setSearch(parsedQuery)
+      setValue(parsedQuery)
+    } else {
+      setSearch('')
+      setValue('')
+    }
   }, [isLoading, isAuthenticated, navigate])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const onSearch = useCallback(
+  const onSearch = useCallback((value: string) => {
+    value = value.trim()
+
+    setHasError(false)
+    setValue(value)
+
+    const searchParameters = new URLSearchParams(window.location.search)
+    searchParameters.set(searchParameterName, encodeURIComponent(value))
+
+    // Updates the URL with the new or updated query parameter
+    const newUrl = `${window.location.pathname}?${searchParameters.toString()}`
+    history.pushState(undefined, '', newUrl)
+
     debounce((value: string) => {
-      setSearch(value.trim())
-    }, 500),
-    []
-  )
+      setSearch(value)
+    }, 500)(value)
+  }, [])
+
+  const onError = useCallback(() => setHasError(true), [])
 
   return (
     <>
@@ -46,7 +74,13 @@ export const Home: FC = (): JSX.Element => {
                 children: (
                   <>
                     <div className={styles['search']} id="search">
-                      <input onChange={(event) => onSearch(event.target.value)} placeholder={'Search...'} required />
+                      <input
+                        className={hasError ? styles['error'] : undefined}
+                        value={value}
+                        onChange={(event) => onSearch(event.target.value)}
+                        placeholder={'Search...'}
+                        required
+                      />
                     </div>
                   </>
                 )
@@ -54,7 +88,7 @@ export const Home: FC = (): JSX.Element => {
             }
           }}
         >
-          <Content search={search} />
+          <Content search={search} onError={onError} />
         </Layout>
       )}
     </>

@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version-file: '.nvmrc'
-          cache: 'yarn'
+          cache: yarn
       - name: Fetch Node Packages
         run: |
           yarn --immutable
@@ -24,3 +24,12 @@ jobs:
         run: |
           yarn serve & 
           yarn cypress:run --browser ${{ matrix.browser }}
+      - name: Upload Recordings
+        uses: actions/upload-artifact@master
+        if: failure()
+        with:
+          name: cypress
+          path: |
+            cypress
+            cypress-visual-screenshots
+            cypress-visual-report

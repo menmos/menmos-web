@@ -6,3 +6,4 @@ package-lock.json
 dist
 .pnp.cjs
 .pnp.loader.mjs
+cypress-visual-report

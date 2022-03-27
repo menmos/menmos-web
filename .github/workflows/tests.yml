@@ -24,3 +24,9 @@ jobs:
         run: |
           yarn serve & 
           yarn cypress:run --browser ${{ matrix.browser }}
+      - name: Upload Recordings
+        uses: actions/upload-artifact@master
+        if: failure()
+        with:
+          name: videos
+          path: cypress/videos

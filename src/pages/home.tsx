@@ -36,8 +36,8 @@ export const Home: FC = (): JSX.Element => {
     if (query) {
       const parsedQuery = decodeURIComponent(query)
 
-      setValue(parsedQuery)
       setSearch(parsedQuery)
+      setValue(parsedQuery)
     } else {
       setSearch('')
       setValue('')
@@ -45,6 +45,8 @@ export const Home: FC = (): JSX.Element => {
   }, [isLoading, isAuthenticated, navigate])
 
   const onSearch = useCallback((value: string) => {
+    value = value.trim()
+
     setHasError(false)
     setValue(value)
 
@@ -57,7 +59,7 @@ export const Home: FC = (): JSX.Element => {
 
     debounce((value: string) => {
       setSearch(value)
-    }, 500)(value.trim())
+    }, 500)(value)
   }, [])
 
   const onError = useCallback(() => setHasError(true), [])

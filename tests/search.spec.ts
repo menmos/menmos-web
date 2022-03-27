@@ -7,7 +7,7 @@ describe('Search', () => {
     cy.visit('/web')
   })
 
-  it('Should search for blobs with a given tag', async () => {
+  it('Should search for blobs with a given tag', () => {
     const search = 'images'
 
     for (let index = 0; index < search.length; index++) {
@@ -138,14 +138,12 @@ describe('Search', () => {
                 }
               }
       }).as('search')
+
+      cy.wait('@search')
     }
 
-    cy.wait('@search')
-
-    // Wait 3 sec for the blobs to display
-    await new Promise((resolve) => {
-      setTimeout(resolve, 3000)
-    })
+    // Wait 4 sec for the blobs to display
+    cy.wait(4000)
 
     cy.compareSnapshot('search', 0.1)
   })

@@ -28,4 +28,7 @@ jobs:
         if: failure()
         with:
           name: cypress
-          path: cypress
+          path: |
+            cypress
+            cypress-visual-screenshots
+            cypress-visual-report

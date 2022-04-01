@@ -11,6 +11,7 @@ import { FileCard } from './types/file'
 export interface Properties {
   blob: Blob
   onLoad?: () => void
+  onClick: () => void
 }
 
 const CardContent = (blob: Blob, onLoad: (() => void) | undefined) => {
@@ -30,13 +31,13 @@ const CardContent = (blob: Blob, onLoad: (() => void) | undefined) => {
 }
 
 export const Card: FC<Properties> = (properties): JSX.Element => {
-  const { blob, onLoad } = properties
+  const { blob, onLoad, onClick } = properties
 
   return (
     <div className={styles['card']} role={'img'}>
-      <a href={blob.url} target="_blank" rel="noreferrer">
+      <div onClick={onClick} onKeyDown={onClick} role="button" tabIndex={0}>
         {CardContent(blob, onLoad)}
-      </a>
+      </div>
     </div>
   )
 }

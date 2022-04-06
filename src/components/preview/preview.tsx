@@ -8,6 +8,7 @@ import * as styles from '../../styles/preview.module.scss'
 
 import { Blob } from '../../api/query'
 import { ImagePreview } from './types/images'
+import { PDFPreview } from './types/pdf'
 
 export interface Properties {
   blob?: Blob
@@ -17,9 +18,11 @@ export interface Properties {
 const PreviewContent = (blob: Blob) => {
   const extension = mime.getType(blob.meta.fields['extension'] || '')
 
-  // TODO: Display PDFs and other supported types
+  // TODO: Display all supported types
   if (extension?.includes('image')) {
     return <ImagePreview blob={blob} />
+  } else if (extension?.includes('pdf')) {
+    return <PDFPreview blob={blob} />
   }
 
   return

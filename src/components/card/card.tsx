@@ -35,7 +35,7 @@ export const Card: FC<Properties> = (properties): JSX.Element => {
 
   return (
     <div className={styles['card']} role={'img'}>
-      <div onClick={onClick} onKeyDown={onClick} role="button" tabIndex={0}>
+      <div onClick={onClick} role="button" tabIndex={0}>
         {CardContent(blob, onLoad)}
       </div>
     </div>

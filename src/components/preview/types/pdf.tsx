@@ -7,6 +7,5 @@ export interface Properties {
 }
 
 export const PDFPreview: FC<Properties> = ({ blob }) => {
-  return <iframe src={blob.url} frameBorder='0' allowFullScreen />
+  return <iframe src={blob.url} title={blob.meta.fields['name'] || blob.id} frameBorder="0" allowFullScreen />
 }
-

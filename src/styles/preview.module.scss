@@ -6,25 +6,22 @@
   width: 95%;
   height: 95%;
   background-color: white;
-
   display: grid;
   grid-template-columns: 9fr 3fr;
 
   & .blob-details {
-    background-color: rgb(230, 230, 230);
-
+    background-color: rgb(230 230 230);
     padding: 30px 25px;
   }
 
   & .content {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255 255 255);
     position: relative;
 
     iframe {
       height: 90%;
       width: 90%;
       position: absolute;
-
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -34,7 +31,6 @@
       max-height: 90%;
       max-width: 90%;
       position: absolute;
-
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

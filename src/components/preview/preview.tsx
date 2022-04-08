@@ -10,6 +10,7 @@ import { Blob } from '../../api/query'
 import { ImagePreview } from './types/images'
 import { PDFPreview } from './types/pdf'
 import { VideoPreview } from './types/video'
+import { AudioPreview } from './types/audio'
 
 export interface Properties {
   blob?: Blob
@@ -26,6 +27,8 @@ const PreviewContent = (blob: Blob) => {
     return <PDFPreview blob={blob} />
   } else if (extension?.includes('video')) {
     return <VideoPreview blob={blob} extension={extension} />
+  } else if (extension?.includes('audio')) {
+    return <AudioPreview blob={blob} extension={extension} />
   }
 
   return

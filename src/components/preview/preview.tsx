@@ -9,6 +9,7 @@ import * as styles from '../../styles/preview.module.scss'
 import { Blob } from '../../api/query'
 import { ImagePreview } from './types/images'
 import { PDFPreview } from './types/pdf'
+import { VideoPreview } from './types/video'
 
 export interface Properties {
   blob?: Blob
@@ -23,6 +24,8 @@ const PreviewContent = (blob: Blob) => {
     return <ImagePreview blob={blob} />
   } else if (extension?.includes('pdf')) {
     return <PDFPreview blob={blob} />
+  } else if (extension?.includes('video')) {
+    return <VideoPreview blob={blob} extension={extension} />
   }
 
   return

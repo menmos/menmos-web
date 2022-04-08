@@ -18,16 +18,9 @@
     background-color: rgb(255 255 255);
     position: relative;
 
-    iframe {
-      height: 90%;
-      width: 90%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    img {
+    iframe,
+    img,
+    video {
       max-height: 90%;
       max-width: 90%;
       position: absolute;

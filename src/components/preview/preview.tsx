@@ -8,6 +8,9 @@ import * as styles from '../../styles/preview.module.scss'
 
 import { Blob } from '../../api/query'
 import { ImagePreview } from './types/images'
+import { PDFPreview } from './types/pdf'
+import { VideoPreview } from './types/video'
+import { AudioPreview } from './types/audio'
 
 export interface Properties {
   blob?: Blob
@@ -17,9 +20,15 @@ export interface Properties {
 const PreviewContent = (blob: Blob) => {
   const extension = mime.getType(blob.meta.fields['extension'] || '')
 
-  // TODO: Display PDFs and other supported types
+  // TODO: Display all supported types
   if (extension?.includes('image')) {
     return <ImagePreview blob={blob} />
+  } else if (extension?.includes('pdf')) {
+    return <PDFPreview blob={blob} />
+  } else if (extension?.includes('video')) {
+    return <VideoPreview blob={blob} extension={extension} />
+  } else if (extension?.includes('audio')) {
+    return <AudioPreview blob={blob} extension={extension} />
   }
 
   return
@@ -48,30 +57,36 @@ export const Preview: FC<Properties> = (properties): JSX.Element => {
 
             <Divider light />
 
-            <div>
+            <div className={styles['tags']}>
               <h4>Tags</h4>
               <p>+ Add tags</p>
-              {blob.meta.tags.map((value, index) => (
-                <Chip key={index} label={value} />
-              ))}
+              <div>
+                {blob.meta.tags.map((value, index) => (
+                  <Chip key={index} label={value} />
+                ))}
+              </div>
             </div>
 
-            <div>
+            <div className={styles['spacing']} />
+
+            <div className={styles['fields']}>
               <h4>Fields</h4>
               <p>+ Add fields</p>
-              {/** TODO: Investigate using editable DataGrids instead: https://mui.com/components/data-grid/editing/ */}
-              <TableContainer component={Paper}>
-                <Table aria-label="simple table" size="small">
-                  <TableBody>
-                    {Object.entries(blob.meta.fields).map(([key, value], index) => (
-                      <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        <TableCell>{key}</TableCell>
-                        <TableCell align="right">{value}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+              <div>
+                {/** TODO: Investigate using editable DataGrids instead: https://mui.com/components/data-grid/editing/ */}
+                <TableContainer component={Paper}>
+                  <Table aria-label="simple table" size="small">
+                    <TableBody>
+                      {Object.entries(blob.meta.fields).map(([key, value], index) => (
+                        <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                          <TableCell>{key}</TableCell>
+                          <TableCell align="right">{value}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
             </div>
           </div>
         </div>

@@ -35,7 +35,8 @@ export const Card: FC<Properties> = (properties): JSX.Element => {
 
   return (
     <div className={styles['card']} role={'img'}>
-      <div onClick={onClick} onKeyDown={onClick} role="button" tabIndex={0}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+      <div onClick={onClick} role="button" tabIndex={0}>
         {CardContent(blob, onLoad)}
       </div>
     </div>

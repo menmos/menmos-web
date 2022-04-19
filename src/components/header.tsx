@@ -8,6 +8,7 @@ import * as styles from '../styles/header.module.scss'
 
 export interface Properties {
   hide?: boolean
+  children?: React.ReactNode
 }
 
 const Header: FC<Properties> = (properties) => {

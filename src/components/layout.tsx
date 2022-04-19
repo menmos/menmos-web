@@ -19,9 +19,10 @@ type ComponentNames = keyof typeof defaultComponents
 
 type Properties = {
   overrides?: ComponentProperties<Components, ComponentNames>
+  children?: React.ReactNode
 }
 
-const Content: FC = (properties) => (
+const Content: FC<Pick<Properties, 'children'>> = (properties) => (
   <div className={styles['content']} id="content">
     {properties.children}
   </div>

@@ -66,7 +66,7 @@ const useAuth = () => {
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const authContext = React.createContext<Auth>(useAuth())
 
-export const AuthProvider: FC = ({ children }) => {
+export const AuthProvider: FC<{ children?: React.ReactNode }> = ({ children }) => {
   const auth = useAuth()
 
   return <authContext.Provider value={auth}>{children}</authContext.Provider>

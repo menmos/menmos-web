@@ -51,7 +51,7 @@
     "@parcel/transformer-css": "^2.4.1",
     "@parcel/transformer-html": "^2.4.1",
     "@parcel/transformer-js": "^2.4.1",
-    "@parcel/transformer-postcss": "^2.4.1",
+    "@parcel/transformer-postcss": "^2.6.0",
     "@parcel/transformer-posthtml": "^2.4.1",
     "@parcel/transformer-react-refresh-wrap": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",

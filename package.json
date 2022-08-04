@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.4.1",
-    "@parcel/core": "^2.4.1",
+    "@parcel/core": "^2.7.0",
     "@parcel/resolver-default": "^2.4.1",
     "@parcel/transformer-babel": "^2.4.1",
     "@parcel/transformer-css": "^2.4.1",

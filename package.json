@@ -47,7 +47,7 @@
     "@parcel/config-default": "^2.4.1",
     "@parcel/core": "^2.4.1",
     "@parcel/resolver-default": "^2.4.1",
-    "@parcel/transformer-babel": "^2.4.1",
+    "@parcel/transformer-babel": "^2.8.3",
     "@parcel/transformer-css": "^2.4.1",
     "@parcel/transformer-html": "^2.4.1",
     "@parcel/transformer-js": "^2.4.1",
